@@ -1,4 +1,4 @@
-# Coffee House ☕  
+# Adda Caffee ☕  
 *A simple MERN stack coffee shop management app focused on MongoDB CRUD operations.*
 
 ---
