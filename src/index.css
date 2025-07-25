@@ -1,4 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Rancho&display=swap");
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: light --default;
+}
+
+:root {
+  --btnColor: #e3b577;
+  --fontFamily: "Rancho", cursive;
+}
+
+* {
+  font-family: var(--fontFamily);
+}
+body {
+  background-image: url("./assets/more/10.png");
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+}
+#detailsPage{
+  background-image: url("/src/assets/more/11.png"), url("/src/assets/more/5.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left top, right bottom;
+}
+#followSection {
+  background-image: url("./assets/more/10.png");
+  background-repeat: no-repeat;
+}
+.textShadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  font-size: 1.5rem;
+}
+.hTextShadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+html {
+  scroll-behavior: smooth;
+}
+#minHight {
+  min-height: calc(100vh - 500px);
+}
+#navbar {
+  background-image: url("../src/assets/more/15.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: beige;
+}
+#navError {
+  background-image: url("../src/assets/more/15.jpg");
+  background-repeat: no-repeat;
+  color: beige;
+}
+#login {
+  background-image: url("/src/assets/more/4.png");
+  background-repeat: no-repeat;
+  background-position: bottom left;
+}
+#create {
+  background-image: url("/src/assets/more/5.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+.active {
+  color: whitesmoke;
+}
+#hero {
+  background-image: url("/src/assets/more/3.png");
+  background-repeat: no-repeat;
+}
+#addCoffee {
+  background-image: url("/src/assets/more/11.png"), url("/src/assets/more/5.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left top, right bottom;
+}
+
+#productSection {
+  background-image: url("../src/assets/more/1.png");
+  background-repeat: no-repeat;
+}
+/* footer */
+footer {
+  background-image: url("../src/assets/more/13.jpg");
+  background-repeat: no-repeat;
+}
+
+.copyRight {
+  background-image: url("../src/assets/more/24.jpg");
+  background-repeat: no-repeat;
+  color: beige;
 }
