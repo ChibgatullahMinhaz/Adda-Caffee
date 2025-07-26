@@ -1,7 +1,4 @@
 import { motion } from "framer-motion";
-import Icon from "../assets/icons/1.png";
-import { Link } from "react-router";
-import NoCoffeeFound from "../UI/NoCoffee";
 
 const OurProductSection: React.FunctionComponent = () => {
 
