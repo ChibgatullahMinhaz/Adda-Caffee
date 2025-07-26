@@ -14,11 +14,11 @@ const navLinks: NavLinksType[] = [
         name: "Home",
     },
     {
-        path: "/products",
+        path: "/our-products",
         name: "Our Products",
     },
     {
-        path: "/our-commitments",
+        path: "/our-commitment",
         name: "Our commitment",
     },
     {
@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
             <div className="navbar-center hidden lg:flex ">
                 <ul className="menu menu-horizontal px-1 flex gap-x-5">{links}</ul>
             </div>
-            
+
             <div className="navbar-end flex gap-x-3">
                 <Link to={`signUp`}>
                     <button className=" btn bg-[#E3B577] cursor-pointer text-white">
