@@ -6,6 +6,7 @@ import OurProducts from "../Pages/OurProducts/OurProducts";
 import OurProductSection from "../Components/OurProductSection/OurProductSection";
 import OurStory from "../Pages/OurStory/OurStory";
 import Signin from "../Components/Auth/Signin";
+import AdminLayout from "../Layouts/AdminLayout";
 
 const routes: RouteObject[] = [
     {
@@ -34,6 +35,10 @@ const routes: RouteObject[] = [
             }
 
         ]
+    },
+    {
+        path: "/admin-dashboard",
+        element: <AdminLayout></AdminLayout>,
     },
     {
         path: "*",
