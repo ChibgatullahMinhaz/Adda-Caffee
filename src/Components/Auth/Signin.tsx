@@ -1,9 +1,9 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import {  type UserCredential } from "firebase/auth";
+import { type UserCredential } from "firebase/auth";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -24,7 +24,7 @@ const Signin: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const {
     register,
@@ -80,41 +80,6 @@ const Signin: React.FC = () => {
   const onSubmit = (data: LoginForm) => {
     loginMutation.mutate(data);
   };
-
-  // // 🔐 Google Sign-In
-  // const handleLoginWithGoogle = async () => {
-  //   const provider = new GoogleAuthProvider();
-  //   try {
-  //     const result = await creteUserWithGoogle(provider);
-  //     const email = result.user.email;
-  //     const encodedEmail = encodeURIComponent(email);
-
-  //     const { data: existingUser } = await axios.get(
-  //       `https://coffee-server-lyart.vercel.app/thirdPartyUsers?email=${encodedEmail}`
-  //     );
-
-  //     if (!existingUser) {
-  //       await axios.post("https://coffee-server-lyart.vercel.app/thirdPartyUsers", {
-  //         email,
-  //         displayName: result.user.displayName,
-  //       });
-  //     }
-
-  //     Swal.fire({
-  //       position: "top-end",
-  //       icon: "success",
-  //       title: "Login Successfully.",
-  //       showConfirmButton: false,
-  //       timer: 1500,
-  //     });
-
-  //     navigate(location?.state || "/");
-  //   } catch (err) {
-  //     console.error(err);
-  //     toast.error("Google sign-in failed.");
-  //   }
-  // };
-
 
 
   return (

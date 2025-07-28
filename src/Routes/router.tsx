@@ -7,6 +7,9 @@ import OurProductSection from "../Components/OurProductSection/OurProductSection
 import OurStory from "../Pages/OurStory/OurStory";
 import Signin from "../Components/Auth/Signin";
 import AdminLayout from "../Layouts/AdminLayout";
+import RiderLayout from "../Layouts/RiderLayout";
+import UserDashboard from "../Layouts/UserDashboard";
+import SignUp from "../Components/Auth/SignUp";
 
 const routes: RouteObject[] = [
     {
@@ -32,6 +35,10 @@ const routes: RouteObject[] = [
             {
                 path: 'login',
                 Component: Signin
+            },
+            {
+                path: 'singUp',
+                Component: SignUp
             }
 
         ]
@@ -39,6 +46,14 @@ const routes: RouteObject[] = [
     {
         path: "/admin-dashboard",
         element: <AdminLayout></AdminLayout>,
+    },
+    {
+        path: "/rider-dashboard",
+        element: <RiderLayout></RiderLayout>,
+    },
+    {
+        path: "/customer-dashboard",
+        element: <UserDashboard></UserDashboard>,
     },
     {
         path: "*",

@@ -1,75 +1,76 @@
 import { Link, Outlet } from "react-router";
-import { LayoutDashboard, UserCheck, Users, ClipboardList, User, Menu } from "lucide-react";
+import {
+    LayoutDashboard,
+    MapPin,
+    History,
+    Clock,
+    UserCircle,
+    Wallet,
+    LifeBuoy,
+    Menu,
+} from "lucide-react";
 
 const RiderLayout = () => {
-      return (
+    return (
         <div className="drawer lg:drawer-open min-h-screen">
-            {/* Hidden checkbox to toggle drawer on mobile */}
             <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
-            {/* Main content */}
             <div className="drawer-content flex flex-col">
-                <div className="w-full navbar bg-base-300">
+                <div className="w-full navbar">
                     <div className="flex-none lg:hidden">
-                        {/* Toggle button (only visible on small screens) */}
-                        <label
-                            htmlFor="dashboard-drawer"
-                            className="btn btn-square btn-ghost"
-                        >
+                        <label htmlFor="dashboard-drawer" className="btn btn-square btn-ghost">
                             <Menu className="w-6 h-6" />
                         </label>
                     </div>
-                    <div className="flex-1 px-4 text-xl font-bold">Admin Dashboard</div>
+                    <div className="flex-1 px-4 text-xl font-bold">Rider Dashboard</div>
                 </div>
 
-                {/* Page content */}
                 <main className="flex-grow p-6 bg-base-100">
                     <Outlet />
                 </main>
 
-                {/* Footer */}
                 <footer className="bg-base-300 text-center py-4">
                     <p>© 2025 Adda Caffe. All rights reserved.</p>
                 </footer>
             </div>
 
-            {/* Sidebar */}
             <div className="drawer-side">
-                <label
-                    htmlFor="dashboard-drawer"
-                    className="drawer-overlay lg:hidden"
-                ></label>
-                <aside className="menu p-4 max-w-64 bg-base-200 text-base-content min-h-screen">
-                    <h2 className="text-xl font-bold mb-4">Admin Menu</h2>
+                <label htmlFor="dashboard-drawer" className="drawer-overlay lg:hidden"></label>
+                <aside className="menu p-4 max-w-64 text-base-content min-h-screen">
+                    <h2 className="text-xl font-bold mb-4">Rider Menu</h2>
                     <ul className="menu p-0 space-y-1">
                         <li>
-                            <Link to="/admin-dashboard" className="flex items-center gap-2">
+                            <Link to="/rider-dashboard" className="flex items-center gap-2">
                                 <LayoutDashboard size={18} /> Dashboard
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                to="/admin-dashboard/Teacher-Request"
-                                className="flex items-center gap-2"
-                            >
-                                <UserCheck size={18} /> Teacher Request
+                            <Link to="/rider-dashboard/assigned" className="flex items-center gap-2">
+                                <MapPin size={18} /> Assigned Deliveries
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin-dashboard/Users" className="flex items-center gap-2">
-                                <Users size={18} />
-                                Users
+                            <Link to="/rider-dashboard/history" className="flex items-center gap-2">
+                                <History size={18} /> Delivery History
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin-dashboard/AllClasses" className="flex items-center gap-2">
-                                <ClipboardList size={18} />
-                                All classes
+                            <Link to="/rider-dashboard/availability" className="flex items-center gap-2">
+                                <Clock size={18} /> Availability
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin-dashboard/Profile" className="flex items-center gap-2">
-                                <User size={18} />
-                                Profile
+                            <Link to="/rider-dashboard/wallet" className="flex items-center gap-2">
+                                <Wallet size={18} /> Wallet
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/rider-dashboard/support" className="flex items-center gap-2">
+                                <LifeBuoy size={18} /> Support
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/rider-dashboard/profile" className="flex items-center gap-2">
+                                <UserCircle size={18} /> Profile
                             </Link>
                         </li>
                     </ul>

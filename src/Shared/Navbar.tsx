@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
                 <div className="flex gap-x-2.5 items-center">
                     <img src={Logo} alt="" className="h-10 w-10" />
                     <Link to={`/`} className=" text-xl">
-                        Coffee House
+                        Adda Caffee
                     </Link>
                 </div>
             </div>
@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
             </div>
 
             <div className="navbar-end flex gap-x-3">
-                <Link to={`signUp`}>
+                <Link to={`/singUp`}>
                     <button className=" btn bg-[#E3B577] cursor-pointer text-white">
                         SingUp
                     </button>

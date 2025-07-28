@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
                             viewport={{ once: false, amount: 0.1 }}
                             className="text-[#331A15] textShadow"
                         >
-                            Coffee House
+                             Adda Caffee
                         </motion.p>
                     </Link>
 
@@ -88,7 +88,7 @@ const Footer: React.FC = () => {
                             className="text-[#331A15] flex items-center"
                         >
                             <MdEmail />
-                            coffeehouse.info@gmail.com
+                             AddaCaffee.info@gmail.com
                         </motion.p>
 
                         <motion.p
@@ -164,7 +164,7 @@ const Footer: React.FC = () => {
                 <aside>
                     <p>
                         Copyright © {new Date().getFullYear()} - All right reserved by
-                        Coffee House Ltd
+                         Adda Caffee Ltd
                     </p>
                 </aside>
             </motion.div>

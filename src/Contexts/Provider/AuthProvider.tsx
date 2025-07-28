@@ -46,7 +46,7 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> = ({ children }) 
         return () => unsubscribe();
     }, []);
 
-
+    console.log(user)
     const authInfo = {
         user,
         loading,

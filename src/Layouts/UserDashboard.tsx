@@ -1,8 +1,14 @@
 import { Link, Outlet } from "react-router";
-import { LayoutDashboard, UserCheck, Users, ClipboardList, User, Menu } from "lucide-react";
-
+import {
+    LayoutDashboard,
+    FileDown,
+    PackageSearch,
+    History,
+    UserCircle,
+    Menu,
+} from "lucide-react";
 const UserDashboard = () => {
-      return (
+    return (
         <div className="drawer lg:drawer-open min-h-screen">
             {/* Hidden checkbox to toggle drawer on mobile */}
             <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
@@ -18,7 +24,7 @@ const UserDashboard = () => {
                             <Menu className="w-6 h-6" />
                         </label>
                     </div>
-                    <div className="flex-1 px-4 text-xl font-bold">Admin Dashboard</div>
+                    <div className="flex-1 px-4 text-xl font-bold">My Dashboard</div>
                 </div>
 
                 {/* Page content */}
@@ -39,7 +45,7 @@ const UserDashboard = () => {
                     className="drawer-overlay lg:hidden"
                 ></label>
                 <aside className="menu p-4 max-w-64 bg-base-200 text-base-content min-h-screen">
-                    <h2 className="text-xl font-bold mb-4">Admin Menu</h2>
+                    <h2 className="text-xl font-bold mb-4">My Menu</h2>
                     <ul className="menu p-0 space-y-1">
                         <li>
                             <Link to="/admin-dashboard" className="flex items-center gap-2">
@@ -51,24 +57,24 @@ const UserDashboard = () => {
                                 to="/admin-dashboard/Teacher-Request"
                                 className="flex items-center gap-2"
                             >
-                                <UserCheck size={18} /> Teacher Request
+                                <FileDown size={18} /> Download invoice
                             </Link>
                         </li>
                         <li>
                             <Link to="/admin-dashboard/Users" className="flex items-center gap-2">
-                                <Users size={18} />
-                                Users
+                                <PackageSearch size={18} />
+                                Track My Orders
                             </Link>
                         </li>
                         <li>
                             <Link to="/admin-dashboard/AllClasses" className="flex items-center gap-2">
-                                <ClipboardList size={18} />
-                                All classes
+                                <History size={18} />
+                                Order History
                             </Link>
                         </li>
                         <li>
                             <Link to="/admin-dashboard/Profile" className="flex items-center gap-2">
-                                <User size={18} />
+                                <UserCircle size={18} />
                                 Profile
                             </Link>
                         </li>
