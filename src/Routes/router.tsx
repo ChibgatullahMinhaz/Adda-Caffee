@@ -10,6 +10,17 @@ import AdminLayout from "../Layouts/AdminLayout";
 import RiderLayout from "../Layouts/RiderLayout";
 import UserDashboard from "../Layouts/UserDashboard";
 import SignUp from "../Components/Auth/SignUp";
+import CustomerHome from "../Dashboards/Customer/Pages/CustomerHome";
+import CustomerInvoice from "../Dashboards/Customer/Pages/CustomerInvoice";
+import UserOrderHistory from "../Dashboards/Customer/Pages/UserOrderHistory";
+import TrackSelfOrder from "../Dashboards/Customer/Pages/TrackSelfOrder";
+import Profile from "../Dashboards/Customer/Pages/Profile";
+import RiderHome from "../Dashboards/Rider/Pages/RiderHome";
+import AsingRides from "../Dashboards/Rider/Pages/AsingRides";
+import DeliveryHistory from "../Dashboards/Rider/Pages/DeliveryHistory";
+import Availibility from "../Dashboards/Rider/Pages/Availibility";
+import Wallet from "../Dashboards/Rider/Pages/Wallet";
+import Supports from "../Dashboards/Rider/Pages/Supports";
 
 const routes: RouteObject[] = [
     {
@@ -46,10 +57,62 @@ const routes: RouteObject[] = [
     {
         path: "/rider-dashboard",
         element: <RiderLayout></RiderLayout>,
+        children: [
+            {
+                index: true,
+                element: <RiderHome></RiderHome>
+            },
+            {
+                path: 'driver/assign/rides',
+                element: <AsingRides></AsingRides>
+            },
+            {
+                path: 'driver/delivery/history',
+                element: <DeliveryHistory></DeliveryHistory>
+            },
+            {
+                path: 'driver/availability',
+                element: <Availibility></Availibility>
+            },
+            {
+                path: 'rider/own/waller/earnings',
+                element: <Wallet></Wallet>
+            },
+            {
+                path: 'supports',
+                element: <Supports></Supports>
+            },
+            {
+                path: 'rider/profile',
+                element: <Profile></Profile>
+            },
+        ]
     },
     {
         path: "/customer-dashboard",
         element: <UserDashboard></UserDashboard>,
+        children: [
+            {
+                index: true,
+                element: <CustomerHome></CustomerHome>
+            },
+            {
+                path: 'invoice-download',
+                element: <CustomerInvoice></CustomerInvoice>
+            },
+            {
+                path: 'my/order/history',
+                element: <UserOrderHistory></UserOrderHistory>
+            },
+            {
+                path: 'track/my/order',
+                element: <TrackSelfOrder></TrackSelfOrder>
+            },
+            {
+                path: 'my/profile',
+                element: <Profile></Profile>
+            }
+        ]
     },
     {
         path: "*",

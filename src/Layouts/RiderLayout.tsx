@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
 import {
     LayoutDashboard,
     MapPin,
@@ -39,44 +39,48 @@ const RiderLayout = () => {
                     <h2 className="text-xl font-bold mb-4">Rider Menu</h2>
                     <ul className="menu p-0 space-y-1">
                         <li>
-                            <Link to="/rider-dashboard" className="flex items-center gap-2">
+                            <NavLink to="/rider-dashboard" className={({ isActive }) =>
+                                isActive ? "flex items-center gap-2 bg-amber-50" : "flex items-center gap-2"
+                            }
+                            >
                                 <LayoutDashboard size={18} /> Dashboard
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/rider-dashboard/assigned" className="flex items-center gap-2">
+                            <NavLink to="/rider-dashboard/driver/assign/rides" className={({ isActive }) => isActive ? "flex items-center gap-2 bg-amber-50" : "flex items-center gap-2"}>
                                 <MapPin size={18} /> Assigned Deliveries
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/rider-dashboard/history" className="flex items-center gap-2">
+                            <NavLink to="/rider-dashboard/driver/delivery/history" className={({ isActive }) => isActive ? "flex items-center gap-2 bg-amber-50" : "flex items-center gap-2"}
+                            >
                                 <History size={18} /> Delivery History
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/rider-dashboard/availability" className="flex items-center gap-2">
+                            <NavLink to="/rider-dashboard/driver/availability" className={({ isActive }) => isActive ? "flex items-center gap-2 bg-amber-50" : "flex items-center gap-2"} >
                                 <Clock size={18} /> Availability
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/rider-dashboard/wallet" className="flex items-center gap-2">
+                            <NavLink to="/rider-dashboard/rider/own/waller/earnings" className={({ isActive }) => isActive ? "flex items-center gap-2 bg-amber-50" : "flex items-center gap-2"}>
                                 <Wallet size={18} /> Wallet
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/rider-dashboard/support" className="flex items-center gap-2">
+                            <NavLink to="/rider-dashboard/supports" className={({ isActive }) => isActive ? "flex items-center gap-2 bg-amber-50" : "flex items-center gap-2"}>
                                 <LifeBuoy size={18} /> Support
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/rider-dashboard/profile" className="flex items-center gap-2">
+                            <NavLink to="/rider-dashboard/rider/profile" className={({ isActive }) => isActive ? "flex items-center gap-2 bg-amber-50" : "flex items-center gap-2"}>
                                 <UserCircle size={18} /> Profile
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </aside>
             </div>
-        </div>
+        </div >
     );
 };
 

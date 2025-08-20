@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
 import {
     LayoutDashboard,
     FileDown,
@@ -48,32 +48,50 @@ const UserDashboard = () => {
                     <h2 className="text-xl font-bold mb-4">My Menu</h2>
                     <ul className="menu p-0 space-y-1">
                         <li>
-                            <Link to="/admin-dashboard" className="flex items-center gap-2">
+                            <NavLink to="/customer-dashboard" className={({ isActive }) =>
+                                isActive
+                                    ? "flex items-center gap-2 bg-amber-100"
+                                    : "flex items-center gap-2"
+                            }
+
+                            >
                                 <LayoutDashboard size={18} /> Dashboard
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link
-                                to="/admin-dashboard/Teacher-Request"
-                                className="flex items-center gap-2"
+                            <NavLink
+                                to="/customer-dashboard/invoice-download"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "flex items-center gap-2 bg-amber-100"
+                                        : "flex items-center gap-2"
+                                }
                             >
                                 <FileDown size={18} /> Download invoice
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/admin-dashboard/Users" className="flex items-center gap-2">
+                            <NavLink to="/customer-dashboard/track/my/order" className={({ isActive }) =>
+                                isActive
+                                    ? "flex items-center gap-2 bg-amber-100"
+                                    : "flex items-center gap-2"
+                            }>
                                 <PackageSearch size={18} />
                                 Track My Orders
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/admin-dashboard/AllClasses" className="flex items-center gap-2">
+                            <NavLink to="/customer-dashboard/my/order/history" className={({ isActive }) =>
+                                isActive
+                                    ? "flex items-center gap-2 bg-amber-100"
+                                    : "flex items-center gap-2"
+                            }>
                                 <History size={18} />
                                 Order History
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/admin-dashboard/Profile" className="flex items-center gap-2">
+                            <Link to="/customer-dashboard/my/profile" className="flex items-center gap-2">
                                 <UserCircle size={18} />
                                 Profile
                             </Link>
@@ -81,7 +99,7 @@ const UserDashboard = () => {
                     </ul>
                 </aside>
             </div>
-        </div>
+        </div >
     );
 };
 

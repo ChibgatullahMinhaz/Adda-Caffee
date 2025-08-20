@@ -135,23 +135,7 @@ const Signin: React.FC = () => {
         </button>
       </form>
 
-      <div className="flex items-center pt-4 space-x-1">
-        <div className="flex-1 h-px"></div>
-        <p className="px-3 text-md text-gray-600">or</p>
-        <div className="flex-1 h-px"></div>
-      </div>
-      {/* 
-      <div className="flex justify-center space-x-4">
-        <button
-          onClick={handleLoginWithGoogle}
-          aria-label="Log in with Google"
-          className="p-3 rounded-sm"
-        >
-          <svg className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458..."></path>
-          </svg>
-        </button>
-      </div> */}
+    
 
       <p className="text-lg text-center">
         Don't have an account?{" "}
