@@ -21,6 +21,16 @@ import DeliveryHistory from "../Dashboards/Rider/Pages/DeliveryHistory";
 import Availibility from "../Dashboards/Rider/Pages/Availibility";
 import Wallet from "../Dashboards/Rider/Pages/Wallet";
 import Supports from "../Dashboards/Rider/Pages/Supports";
+import AdminHome from "../Dashboards/Admin/Pages/AdminHome";
+import ProductManagements from "../Dashboards/Admin/Pages/Products/ProductManagements";
+import Categories from "../Dashboards/Admin/Pages/Products/Categories";
+import AddProducts from "../Dashboards/Admin/Pages/Products/AddProducts";
+import UpdateProduct from "../Dashboards/Admin/Pages/Products/UpdateProduct";
+import ProductDetails from "../Dashboards/Admin/Pages/Products/ProductDetails";
+import AllUsers from "../Dashboards/Admin/Pages/Users/AllUsers";
+import UserDetails from "../Dashboards/Admin/Pages/Users/UserDetails";
+import MakeAdmin from "../Dashboards/Admin/Pages/Users/MakeAdmin";
+import BannedUser from "../Dashboards/Admin/Pages/Users/BannedUser";
 
 const routes: RouteObject[] = [
     {
@@ -53,6 +63,52 @@ const routes: RouteObject[] = [
     {
         path: "/admin-dashboard",
         element: <AdminLayout></AdminLayout>,
+        children: [
+            {
+                index: true,
+                element: <AdminHome></AdminHome>
+            },
+            {
+                path: 'products/managements',
+                element: <ProductManagements></ProductManagements>,
+            }
+            ,
+            {
+                path: 'categories',
+                element: <Categories></Categories>,
+            }
+            ,
+            {
+                path: 'products/add',
+                element: <AddProducts></AddProducts>,
+            }
+            ,
+            {
+                path: 'products/update/:productId',
+                element: <UpdateProduct></UpdateProduct>,
+            }
+            ,
+            {
+                path: 'products/details/:productId',
+                element: <ProductDetails></ProductDetails>,
+            },
+            {
+                // user managements
+                path: 'all/users',
+                element: <AllUsers></AllUsers>,
+            }, {
+                path: 'user/details/:userId',
+                element: <UserDetails></UserDetails>
+            }
+            , {
+                path: 'user/make/admin',
+                element: <MakeAdmin></MakeAdmin>
+            }
+            , {
+                path: 'banned/user',
+                element: <BannedUser></BannedUser>
+            }
+        ]
     },
     {
         path: "/rider-dashboard",

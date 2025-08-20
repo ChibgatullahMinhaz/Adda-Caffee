@@ -16,6 +16,13 @@ import {
   Info,
   Globe,
   Store,
+  Shield,
+  Activity,
+  DollarSign,
+  HelpCircle,
+  MessageCircle,
+  Database,
+  Server,
 } from "lucide-react";
 
 const AdminLayout: React.FunctionComponent = () => {
@@ -44,11 +51,14 @@ const AdminLayout: React.FunctionComponent = () => {
       <div className="drawer-side">
         <label htmlFor="dashboard-drawer" className="drawer-overlay lg:hidden"></label>
         <aside className="menu p-4 max-w-72 bg-base-200 text-base-content min-h-screen space-y-2">
-          <h2 className="text-xl font-bold mb-4">Admin Menu</h2>
+          <h2 className="text-xl font-bold mb-4">
+            <Link to={`/admin-dashboard`} >
+              Admin Menu</Link>
+          </h2>
 
           {/* Dashboard */}
           <li>
-            <Link to="/admin" className="flex items-center gap-2">
+            <Link to="/admin-dashboard" className="flex items-center gap-2 bg-amber-100">
               <LayoutDashboard size={18} /> Dashboard
             </Link>
           </li>
@@ -61,9 +71,9 @@ const AdminLayout: React.FunctionComponent = () => {
             </div>
             <div className="collapse-content">
               <ul className="space-y-1">
-                <li><Link to="/admin/products"><PackageSearch size={16} /> All Products</Link></li>
-                <li><Link to="/admin/products/add"><PackagePlus size={16} /> Add Product</Link></li>
-                <li><Link to="/admin/categories"><ClipboardList size={16} /> Categories</Link></li>
+                <li><Link to="/admin-dashboard/products/managements"><PackageSearch size={16} /> All Products</Link></li>
+                <li><Link to="/admin-dashboard/products/add"><PackagePlus size={16} /> Add Product</Link></li>
+                <li><Link to="/admin-dashboard/categories"><ClipboardList size={16} /> Categories</Link></li>
               </ul>
             </div>
           </div>
@@ -79,6 +89,11 @@ const AdminLayout: React.FunctionComponent = () => {
                 <li><Link to="/admin/orders">All Orders</Link></li>
                 <li><Link to="/admin/orders/pending">Pending Orders</Link></li>
                 <li><Link to="/admin/orders/invoice">Invoices</Link></li>
+                <li><Link to="/admin/orders/assign">Assign Order</Link></li>
+                <li><Link to="/admin/orders/refund">Refund Order</Link></li>
+                <li><Link to="/admin/orders/reviews">Reviews</Link></li>
+                <li><Link to="/admin/orders/track">Track Order</Link></li>
+                <li><Link to="/admin/orders/history">Order History</Link></li>
               </ul>
             </div>
           </div>
@@ -91,8 +106,9 @@ const AdminLayout: React.FunctionComponent = () => {
             </div>
             <div className="collapse-content">
               <ul className="space-y-1">
-                <li><Link to="/admin/users">All Users</Link></li>
-                <li><Link to="/admin/users/banned">Banned Users</Link></li>
+                <li><Link to="/admin-dashboard/all/users">All Users</Link></li>
+                <li><Link to="/admin-dashboard/user/make/admin">Make Admin</Link></li>
+                <li><Link to="/admin-dashboard/banned/user">Banned Users</Link></li>
               </ul>
             </div>
           </div>
@@ -106,17 +122,33 @@ const AdminLayout: React.FunctionComponent = () => {
             <div className="collapse-content">
               <ul className="space-y-1">
                 <li><Link to="/admin/riders">All Riders</Link></li>
+                <li><Link to="/admin/riders/pending">Pending Rider</Link></li>
+                <li><Link to="/admin/riders/rejected">Rejected Rider</Link></li>
                 <li><Link to="/admin/riders/add">Add Rider</Link></li>
+                <li><Link to="/admin/riders/manual-assign">Manual Assign</Link></li>
               </ul>
             </div>
           </div>
 
-          {/* Sales & Analytics */}
-          <li>
-            <Link to="/admin/analytics" className="flex items-center gap-2">
-              <BarChart size={18} /> Analytics
-            </Link>
-          </li>
+          {/* Analytics & Reports */}
+          <div className="collapse collapse-arrow bg-base-100">
+            <input type="checkbox" />
+            <div className="collapse-title font-medium flex items-center gap-2">
+              <BarChart size={18} /> Analytics / Reports
+            </div>
+            <div className="collapse-content">
+              <ul className="space-y-1">
+                <li><Link to="/admin/analytics">Overview</Link></li>
+                <li><Link to="/admin/analytics/sales">Sales Report</Link></li>
+                <li><Link to="/admin/analytics/revenue">Revenue</Link></li>
+                <li><Link to="/admin/analytics/top-products">Top Products</Link></li>
+                <li><Link to="/admin/analytics/orders">Order Report</Link></li>
+                <li><Link to="/admin/analytics/customers">Customer Insights</Link></li>
+                <li><Link to="/admin/analytics/finance">Finance Summary</Link></li>
+                <li><Link to="/admin/analytics/export">Export Reports</Link></li>
+              </ul>
+            </div>
+          </div>
 
           {/* Coupons & Rewards */}
           <div className="collapse collapse-arrow bg-base-100">
@@ -147,6 +179,52 @@ const AdminLayout: React.FunctionComponent = () => {
             </div>
           </div>
 
+          {/* ✅ NEW: Finance & Transactions */}
+          <div className="collapse collapse-arrow bg-base-100">
+            <input type="checkbox" />
+            <div className="collapse-title font-medium flex items-center gap-2">
+              <DollarSign size={18} /> Finance
+            </div>
+            <div className="collapse-content">
+              <ul className="space-y-1">
+                <li><Link to="/admin/finance">Overview</Link></li>
+                <li><Link to="/admin/finance/transactions">Transactions</Link></li>
+                <li><Link to="/admin/finance/refunds">Refunds</Link></li>
+                <li><Link to="/admin/finance/payouts">Payouts</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* ✅ NEW: Security & Logs */}
+          <div className="collapse collapse-arrow bg-base-100">
+            <input type="checkbox" />
+            <div className="collapse-title font-medium flex items-center gap-2">
+              <Shield size={18} /> Security
+            </div>
+            <div className="collapse-content">
+              <ul className="space-y-1">
+                <li><Link to="/admin/security/roles">Roles & Permissions</Link></li>
+                <li><Link to="/admin/security/logs"><Activity size={16} /> Audit Logs</Link></li>
+                <li><Link to="/admin/security/activity">Activity Feed</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* ✅ NEW: Support & Tickets */}
+          <div className="collapse collapse-arrow bg-base-100">
+            <input type="checkbox" />
+            <div className="collapse-title font-medium flex items-center gap-2">
+              <HelpCircle size={18} /> Support
+            </div>
+            <div className="collapse-content">
+              <ul className="space-y-1">
+                <li><Link to="/admin/support/tickets">Tickets</Link></li>
+                <li><Link to="/admin/support/chat"><MessageCircle size={16} /> Live Chat</Link></li>
+                <li><Link to="/admin/support/reviews">Manage Reviews</Link></li>
+              </ul>
+            </div>
+          </div>
+
           {/* Settings */}
           <div className="collapse collapse-arrow bg-base-100">
             <input type="checkbox" />
@@ -158,6 +236,10 @@ const AdminLayout: React.FunctionComponent = () => {
                 <li><Link to="/admin/settings/company">Company Info</Link></li>
                 <li><Link to="/admin/settings/payment">Payment Settings</Link></li>
                 <li><Link to="/admin/settings/language"><Globe size={16} /> Language</Link></li>
+                {/* ✅ NEW: Advanced Settings */}
+                <li><Link to="/admin/settings/backup"><Database size={16} /> Backup & Restore</Link></li>
+                <li><Link to="/admin/settings/maintenance"><Server size={16} /> Maintenance Mode</Link></li>
+                <li><Link to="/admin/settings/monitor">System Monitor</Link></li>
               </ul>
             </div>
           </div>
