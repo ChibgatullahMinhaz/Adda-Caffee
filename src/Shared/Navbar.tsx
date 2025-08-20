@@ -1,7 +1,9 @@
-import React from "react";
-import { Link, NavLink } from "react-router";
+import React, { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router";
 import Logo from "../assets/more/logo1.png";
 import { motion } from "framer-motion";
+import AuthContext from "../Contexts/Context/AuthContext";
+import useAuth from "../Hook/useAuth";
 
 // interface
 interface NavLinksType {
@@ -17,22 +19,26 @@ const navLinks: NavLinksType[] = [
         path: "/our-products",
         name: "Our Products",
     },
-    {
-        path: "/our-commitment",
-        name: "Our commitment",
-    },
+
     {
         path: "/our-story",
         name: "Our stories",
     },
 ];
 const Navbar: React.FC = () => {
+    const { user } = useAuth()
+    const navigate = useNavigate()
+    console.log(user)
     const links = navLinks.map((link) => (
         <NavLink key={link.name} to={`${link.path}`} className={`text-md`}>
             {link.name}
         </NavLink>
     ));
 
+    // give role base access 
+    const handleNavigate = () => {
+        navigate('/')
+    }
 
     return (
         <motion.div
@@ -80,11 +86,16 @@ const Navbar: React.FC = () => {
             </div>
 
             <div className="navbar-end flex gap-x-3">
-                <Link to={`/singUp`}>
+                {user ? <>
+                    <div onClick={handleNavigate}>
+                        <img src={user.photoURL ?? "/default-profile.png"} alt="user profile" className="h-8 w-8 rounded-full" />
+                    </div>
+                </> : <Link to={`/singUp`}>
                     <button className=" btn bg-[#E3B577] cursor-pointer text-white">
                         SingUp
                     </button>
-                </Link>
+                </Link>}
+
 
             </div>
         </motion.div>

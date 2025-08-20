@@ -205,7 +205,7 @@ const SignUp: React.FunctionComponent = () => {
             </div>
             <p className="text-lg text-center sm:px-6">
                 Your have an account?
-                <Link to="/signin" className="underline link-accent text-blue-600">
+                <Link to="/login" className="underline link-accent text-blue-600">
                     Signin
                 </Link>
             </p>

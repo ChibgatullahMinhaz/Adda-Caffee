@@ -19,8 +19,6 @@ interface LoginForm {
 
 const Signin: React.FC = () => {
   const { userLogin } = useAuth();
-  const context = useAuth();
-  console.log(context)
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -157,7 +155,7 @@ const Signin: React.FC = () => {
 
       <p className="text-lg text-center">
         Don't have an account?{" "}
-        <Link to="/signUp" className="underline text-blue-600">
+        <Link to="/singUp" className="underline text-blue-600">
           Sign up
         </Link>
       </p>

@@ -22,15 +22,11 @@ const routes: RouteObject[] = [
             },
             {
                 path: '/our-products',
-                element: <OurProducts></OurProducts>
+                element: <OurProductSection></OurProductSection>
             },
             {
                 path: '/our-story',
                 element: <OurStory></OurStory>
-            },
-            {
-                path: '/our-commitment',
-                element: <OurProductSection></OurProductSection>
             },
             {
                 path: 'login',
