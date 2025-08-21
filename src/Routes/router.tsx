@@ -2,7 +2,6 @@ import { createBrowserRouter, type RouteObject } from "react-router";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home/Home";
 import ErrorLayout from "../Layouts/ErrorLayout";
-import OurProducts from "../Pages/OurProducts/OurProducts";
 import OurProductSection from "../Components/OurProductSection/OurProductSection";
 import OurStory from "../Pages/OurStory/OurStory";
 import Signin from "../Components/Auth/Signin";
@@ -31,6 +30,16 @@ import AllUsers from "../Dashboards/Admin/Pages/Users/AllUsers";
 import UserDetails from "../Dashboards/Admin/Pages/Users/UserDetails";
 import MakeAdmin from "../Dashboards/Admin/Pages/Users/MakeAdmin";
 import BannedUser from "../Dashboards/Admin/Pages/Users/BannedUser";
+import Allorder from "../Dashboards/Admin/Pages/Order/Allorder";
+import PendingOrder from "../Dashboards/Admin/Pages/Order/PendingOrder";
+import OrderInvoice from "../Dashboards/Admin/Pages/Order/OrderInvoice";
+import ReturnedOrder from "../Dashboards/Admin/Pages/Order/ReturnedOrder";
+import RefundOrder from "../Dashboards/Admin/Pages/Order/RefundOrder";
+import Review from "../Dashboards/Admin/Pages/Order/Review";
+import TrackOrder from "../Dashboards/Admin/Pages/Order/TrackOrder";
+import OrderHistory from "../Dashboards/Admin/Pages/Order/OrderHitory";
+import OrderDetails from "../Dashboards/Admin/Pages/Order/OrderDetails";
+import AssignOrder from "../Dashboards/Admin/Pages/Order/AssignOrder";
 
 const routes: RouteObject[] = [
     {
@@ -107,7 +116,48 @@ const routes: RouteObject[] = [
             , {
                 path: 'banned/user',
                 element: <BannedUser></BannedUser>
-            }
+            },
+            // order managements
+            {
+                path: 'all/orders',
+                element: <Allorder></Allorder>
+            },
+            {
+                path: 'all/pending/orders',
+                element: <PendingOrder></PendingOrder>
+            },
+            {
+                path: 'all/invoice',
+                element: <OrderInvoice></OrderInvoice>
+            },
+            {
+                path: 'all/returned',
+                element: <ReturnedOrder></ReturnedOrder>
+            },
+            {
+                path: 'all/refund/orders',
+                element: <RefundOrder></RefundOrder>
+            },
+            {
+                path: 'all/reviews',
+                element: <Review></Review>
+            },
+            {
+                path: 'Track/order',
+                element: <TrackOrder></TrackOrder>
+            },
+            {
+                path: 'order/history',
+                element: <OrderHistory></OrderHistory>
+            },
+            {
+                path: 'order/details/:orderId',
+                element: <OrderDetails></OrderDetails>
+            },
+            {
+                path: 'assign/orders',
+                element: <AssignOrder></AssignOrder>
+            },
         ]
     },
     {

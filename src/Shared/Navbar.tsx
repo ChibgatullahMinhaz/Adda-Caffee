@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import Logo from "../assets/more/logo1.png";
 import { motion } from "framer-motion";
-import AuthContext from "../Contexts/Context/AuthContext";
 import useAuth from "../Hook/useAuth";
 
 // interface

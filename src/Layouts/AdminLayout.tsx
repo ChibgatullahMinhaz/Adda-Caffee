@@ -86,14 +86,15 @@ const AdminLayout: React.FunctionComponent = () => {
             </div>
             <div className="collapse-content">
               <ul className="space-y-1">
-                <li><Link to="/admin/orders">All Orders</Link></li>
-                <li><Link to="/admin/orders/pending">Pending Orders</Link></li>
-                <li><Link to="/admin/orders/invoice">Invoices</Link></li>
-                <li><Link to="/admin/orders/assign">Assign Order</Link></li>
-                <li><Link to="/admin/orders/refund">Refund Order</Link></li>
-                <li><Link to="/admin/orders/reviews">Reviews</Link></li>
-                <li><Link to="/admin/orders/track">Track Order</Link></li>
-                <li><Link to="/admin/orders/history">Order History</Link></li>
+                <li><Link to="/admin-dashboard/all/orders">All Orders</Link></li>
+                <li><Link to="/admin-dashboard/all/pending/orders">Pending Orders</Link></li>
+                <li><Link to="/admin-dashboard/all/invoice">Invoices</Link></li>
+                <li><Link to="/admin-dashboard/assign/orders">Assign Order</Link></li>
+                <li><Link to="/admin-dashboard/all/refund/orders">Refund Order</Link></li>
+                <li><Link to="/admin-dashboard/all/returned">Returned Order</Link></li>
+                <li><Link to="/admin-dashboard/all/reviews">Reviews</Link></li>
+                <li><Link to="/admin-dashboard/Track/order">Track Order</Link></li>
+                <li><Link to="/admin-dashboard/order/history">Order History</Link></li>
               </ul>
             </div>
           </div>

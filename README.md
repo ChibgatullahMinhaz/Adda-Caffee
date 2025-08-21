@@ -40,10 +40,11 @@
 - Access delivery history and performance metrics.
 
 ## Tech Stack
-- **Frontend:** React + TypeScript, TailwindCSS/DaisyUI, Lucide Icons
+- **Frontend:** React + TypeScript, TailwindCSS/DaisyUI, Lucide Icons, Firebase Authentication
 - **Backend:** Node.js + Express
 - **Database:** MongoDB
 - **Authentication:** JWT-based authentication with role management
+- **Payment:** Stripe and SSLcommerce
 
 ## Purpose & Benefits
 Adda Caffe is designed as a launch-ready MVP for coffee shops, providing:
@@ -56,7 +57,7 @@ Adda Caffe is designed as a launch-ready MVP for coffee shops, providing:
 
 ## 🔗 Live Site / GitHub Repo
 
-- Frontend: [Repo link](https://github.com/ChibgatullahMinhaz/Coffee-house)
+- Frontend: [Repo link](https://github.com/ChibgatullahMinhaz/Adda-Caffee)
 - Backend: [Repo link](https://github.com/ChibgatullahMinhaz/Coffee-house-server)
 - Live Demo: [Go Live](https://coffee-house-com.web.app/)
 
