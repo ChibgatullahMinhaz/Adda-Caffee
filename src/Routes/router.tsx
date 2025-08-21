@@ -40,6 +40,11 @@ import TrackOrder from "../Dashboards/Admin/Pages/Order/TrackOrder";
 import OrderHistory from "../Dashboards/Admin/Pages/Order/OrderHitory";
 import OrderDetails from "../Dashboards/Admin/Pages/Order/OrderDetails";
 import AssignOrder from "../Dashboards/Admin/Pages/Order/AssignOrder";
+import Riders from "../Dashboards/Admin/Pages/Riders/Riders";
+import ManualAssign from "../Dashboards/Admin/Pages/Riders/ManulaAssign";
+import AddRider from "../Dashboards/Admin/Pages/Riders/AddRider";
+import RejectedRider from "../Dashboards/Admin/Pages/Riders/RejectedRider";
+import PendingRider from "../Dashboards/Admin/Pages/Riders/PendingRider";
 
 const routes: RouteObject[] = [
     {
@@ -157,6 +162,27 @@ const routes: RouteObject[] = [
             {
                 path: 'assign/orders',
                 element: <AssignOrder></AssignOrder>
+            },
+            // rider managements
+            {
+                path: 'rider/riders',
+                element: <Riders></Riders>
+            },
+            {
+                path: 'rider/manual/assign',
+                element: <ManualAssign></ManualAssign>
+            },
+            {
+                path: 'rider/add/rider',
+                element: <AddRider></AddRider>
+            },
+            {
+                path: 'rider/rejected/rider',
+                element: <RejectedRider></RejectedRider>
+            },
+            {
+                path: 'rider/pending/rider',
+                element: <PendingRider></PendingRider>
             },
         ]
     },

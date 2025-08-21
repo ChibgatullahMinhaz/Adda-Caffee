@@ -122,11 +122,11 @@ const AdminLayout: React.FunctionComponent = () => {
             </div>
             <div className="collapse-content">
               <ul className="space-y-1">
-                <li><Link to="/admin/riders">All Riders</Link></li>
-                <li><Link to="/admin/riders/pending">Pending Rider</Link></li>
-                <li><Link to="/admin/riders/rejected">Rejected Rider</Link></li>
-                <li><Link to="/admin/riders/add">Add Rider</Link></li>
-                <li><Link to="/admin/riders/manual-assign">Manual Assign</Link></li>
+                <li><Link to="/admin-dashboard/rider/riders">All Riders</Link></li>
+                <li><Link to="/admin-dashboard/rider/pending/rider">Pending Rider</Link></li>
+                <li><Link to="/admin-dashboard/rider/rejected/rider">Rejected Rider</Link></li>
+                <li><Link to="/admin-dashboard/rider/add/rider">Add Rider</Link></li>
+                <li><Link to="/admin-dashboard/rider/manual/assign">Manual Assign</Link></li>
               </ul>
             </div>
           </div>
