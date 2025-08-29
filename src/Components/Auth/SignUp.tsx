@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import type { UserCredential } from "firebase/auth";
+import { updateProfile, type UserCredential } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import useAuth from "../../Hook/useAuth";
 import axiosPublicInstance from "../../api/axiosPublicInstance";
@@ -31,10 +31,14 @@ const createUserWithBackend = async (
 
     try {
         const result = await userRegister(email, password);
-
+        if (result.user) {
+            await updateProfile(result.user, {
+                displayName: name,
+                photoURL: photo,
+            })
+        }
         const userInfo = {
             email,
-            password,
             name,
             photo,
             terms,
@@ -176,13 +180,14 @@ const SignUp: React.FunctionComponent = () => {
                 </label>
                 <button
                     type="submit"
+                    disabled={signUpMutation.status === "pending"}
                     className="block w-full bg-[var(--btnColor)] cursor-pointer p-3 text-center rounded-sm"
                 >
-                    Create Account
+                    {signUpMutation.status === 'pending' ? "Creating..." : "Create Account"}
                 </button>
             </form>
-           
-           
+
+
             <p className="text-lg text-center sm:px-6">
                 Your have an account?
                 <Link to="/login" className="underline link-accent text-blue-600">
