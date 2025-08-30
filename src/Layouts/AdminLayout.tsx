@@ -232,6 +232,7 @@ const AdminLayout: React.FunctionComponent = () => {
             <div className="collapse-title font-medium flex items-center gap-2">
               <Settings size={18} /> Settings
             </div>
+            
             <div className="collapse-content">
               <ul className="space-y-1">
                 <li><Link to="/admin-dashboard/settings/company">Company Info</Link></li>

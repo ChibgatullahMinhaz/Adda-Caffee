@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useDebugValue, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import Logo from "../assets/more/logo1.png";
 import { motion } from "framer-motion";
@@ -34,10 +34,7 @@ const Navbar: React.FC = () => {
         </NavLink>
     ));
 
-    // give role base access 
-    const handleNavigate = () => {
-        navigate('/')
-    }
+   
 
     return (
         <motion.div
@@ -86,16 +83,36 @@ const Navbar: React.FC = () => {
 
             <div className="navbar-end flex gap-x-3">
                 {user ? <>
-                    <div onClick={handleNavigate}>
-                        <img src={user.photoURL ?? "/default-profile.png"} alt="user profile" className="h-8 w-8 rounded-full" />
+                    <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img
+                                    src={user.photoURL ?? "/default-profile.png"}
+                                    alt="user profile"
+                                />
+                            </div>
+                        </div>
+                        <ul
+                            tabIndex={0}
+                            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#372727] text-[#F5D58A] rounded-box w-52"
+                        >
+                            <li>
+                                <Link to="/customer-dashboard">Dashboard</Link>
+                            </li>
+                           
+                            <li>
+                                <button onClick={() => navigate("/logout")}>Logout</button>
+                            </li>
+                        </ul>
                     </div>
+
                 </> : <Link to={`/singUp`}>
                     <button className=" btn bg-[#E3B577] cursor-pointer text-white">
                         SingUp
                     </button>
                 </Link>}
 
-
+               
             </div>
         </motion.div>
     );

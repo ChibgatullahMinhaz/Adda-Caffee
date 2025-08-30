@@ -45,7 +45,7 @@ const UserDashboard = () => {
                     className="drawer-overlay lg:hidden"
                 ></label>
                 <aside className="menu p-4 max-w-64 bg-base-200 text-base-content min-h-screen">
-                    <h2 className="text-xl font-bold mb-4">My Menu</h2>
+                    <Link to={`/`} className="text-xl font-bold mb-4">My Menu</Link>
                     <ul className="menu p-0 space-y-1">
                         <li>
                             <NavLink to="/customer-dashboard" className={({ isActive }) =>

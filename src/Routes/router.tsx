@@ -332,7 +332,6 @@ const routes: RouteObject[] = [
                 path: 'settings/monitor',
                 element: <SystemMonitoring></SystemMonitoring>
             },
-
         ]
     },
     {
