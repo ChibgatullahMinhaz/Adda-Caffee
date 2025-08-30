@@ -69,7 +69,7 @@ const FollowUsSection: React.FunctionComponent = () => {
                                             initial={{ y: 70, opacity: 0 }}
                                             whileInView={{ y: 0, opacity: 1 }}
                                             transition={{ duration: 0.5, ease: "easeInOut" }}
-                                            viewport={{ once: false, amount: 0 }}
+                                            viewport={{ once: true, amount: 0 }}
                                             key={idx}
                                         >
                                             <img src={img?.image} alt="" />

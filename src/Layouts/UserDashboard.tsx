@@ -47,7 +47,7 @@ const UserDashboard = () => {
                     </div>
 
                     {/* Page content */}
-                    <main className="flex-grow p-6 bg-base-100">
+                    <main className="flex-grow p-6">
                         {routeLoading ? (
                             <Loader></Loader>
                         ) : (
@@ -57,7 +57,7 @@ const UserDashboard = () => {
                     </main>
 
                     {/* Footer */}
-                    <footer className="bg-base-300 text-center py-4">
+                    <footer className=" text-center py-4">
                         <p>© 2025 Adda Caffe. All rights reserved.</p>
                     </footer>
                 </div>
