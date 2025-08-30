@@ -69,7 +69,7 @@ const CustomerHome: React.FunctionComponent = () => {
       </div>
 
       {/* Offer Banner */}
-      <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-6 rounded-2xl shadow text-center">
+      <div className="bg-[#E3B577] text-white p-6 rounded-2xl shadow text-center">
         <h3 className="text-xl font-bold">🔥 Special Offer</h3>
         <p className="mt-2">Get 20% Off on Cold Brew Today!</p>
         <button className="mt-3 bg-white text-black font-semibold px-4 py-2 rounded-lg shadow">

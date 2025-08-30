@@ -1,4 +1,4 @@
-import {  NavLink, Outlet } from "react-router";
+import { NavLink, Outlet, useLocation } from "react-router";
 import {
     LayoutDashboard,
     MapPin,
@@ -9,8 +9,24 @@ import {
     LifeBuoy,
     Menu,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import Loader from "../Components/UI/Loader";
 
 const RiderLayout = () => {
+    const [routeLoading, setRouteLoading] = useState<boolean>(true);
+    const location = useLocation();
+
+    useEffect(() => {
+        setRouteLoading(true);
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+        const timeout = setTimeout(() => {
+            setRouteLoading(false);
+        }, 100);
+        return () => clearTimeout(timeout);
+    }, [location]);
     return (
         <div className="drawer lg:drawer-open min-h-screen">
             <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
@@ -25,7 +41,12 @@ const RiderLayout = () => {
                 </div>
 
                 <main className="flex-grow p-6 bg-base-100">
-                    <Outlet />
+                     {routeLoading ? (
+                            <Loader></Loader>
+                        ) : (
+                            <Outlet></Outlet>
+
+                        )}
                 </main>
 
                 <footer className="bg-base-300 text-center py-4">

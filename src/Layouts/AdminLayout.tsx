@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useLocation } from "react-router";
 import {
   LayoutDashboard,
   PackageSearch,
@@ -14,7 +14,7 @@ import {
   Menu,
   Home,
   Info,
- 
+
   Store,
   Shield,
   Activity,
@@ -24,8 +24,24 @@ import {
   Database,
   Server,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import Loader from "../Components/UI/Loader";
 
 const AdminLayout: React.FunctionComponent = () => {
+  const [routeLoading, setRouteLoading] = useState<boolean>(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    setRouteLoading(true);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    const timeout = setTimeout(() => {
+      setRouteLoading(false);
+    }, 100);
+    return () => clearTimeout(timeout);
+  }, [location]);
   return (
     <div className="drawer lg:drawer-open min-h-screen">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
@@ -40,7 +56,12 @@ const AdminLayout: React.FunctionComponent = () => {
         </div>
 
         <main className="flex-grow p-6">
-          <Outlet />
+          {routeLoading ? (
+            <Loader></Loader>
+          ) : (
+            <Outlet></Outlet>
+
+          )}
         </main>
 
         <footer className="text-center py-4">
@@ -232,7 +253,7 @@ const AdminLayout: React.FunctionComponent = () => {
             <div className="collapse-title font-medium flex items-center gap-2">
               <Settings size={18} /> Settings
             </div>
-            
+
             <div className="collapse-content">
               <ul className="space-y-1">
                 <li><Link to="/admin-dashboard/settings/company">Company Info</Link></li>

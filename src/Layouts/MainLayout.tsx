@@ -22,7 +22,6 @@ const MainLayout: React.FC = () => {
     }, [location]);
     return (
         <>
-
             <ScrollButton></ScrollButton>
             <header>
                 <nav>
