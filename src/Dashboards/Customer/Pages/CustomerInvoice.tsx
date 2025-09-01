@@ -49,7 +49,7 @@ const CustomerInvoice: React.FC = () => {
             const row = [item.name, item.qty, `$${item.price}`, `$${item.qty * item.price}`];
             tableRows.push(row);
         });
-        // @ Generate table using autoTable
+        //@ Generate table using autoTable
         autoTable(doc, {
             head: [tableColumn],
             body: tableRows,

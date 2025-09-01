@@ -1,7 +1,7 @@
 import axios, { type AxiosInstance } from "axios";
 
 // 1. Define your API base URL and any other common configurations
-const BASE_URL = "https://api.example.com";
+const BASE_URL = "http://localhost:5000";
 
 // 2. Create the Axios instance
 const axiosSecureInstance: AxiosInstance = axios.create({
