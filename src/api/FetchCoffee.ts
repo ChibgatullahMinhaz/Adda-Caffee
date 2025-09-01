@@ -9,7 +9,7 @@ interface Coffee {
   price: number;
   image: string;
   available: boolean;
-  size: string;
+  sizes: string[];
   currency: string;
   inStock: boolean;
   caffeineContent: number;

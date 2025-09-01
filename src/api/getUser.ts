@@ -1,10 +1,15 @@
 import { toast } from "react-toastify";
 import axiosSecureInstance from "../api/axiosSecureInstance";
 
-
 interface User {
   name: string;
+  email: string;
+  isOnline: boolean;
+  isActive: boolean;
+  role: string;
+  createdAt: Date;
 }
+
 const fetchAllUser = async (): Promise<User[]> => {
   try {
     const res = await axiosSecureInstance("/users");
