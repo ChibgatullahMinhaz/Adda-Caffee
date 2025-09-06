@@ -1,33 +1,61 @@
-import FollowUsSection from "../../Components/FollowUsSection/FollowUsSection";
-import Hero from "../../Components/Hero/Hero";
-import AboutUs from "../../Components/Home/AboutUs";
-import FeaturedProducts from "../../Components/Home/FeaturedProducts";
-import JoinAsRider from "../../Components/Home/JoinAsRider";
-import OrderDeliveryInfo from "../../Components/Home/OrderDeliveryInfo";
-import SpecialOffer from "../../Components/Home/SpecialOffer";
-import WhyChooseUs from "../../Components/Home/WhyChooseUs";
-import OurProductSection from "../../Components/OurProductSection/OurProductSection";
-import SubHeader from "../../Components/SubHeader/SubHeader";
+import { lazy, Suspense } from "react";
+import Loading from "../../Components/ComponentLoading/Loading";
+
+const FollowUsSection = lazy(() => import("../../Components/FollowUsSection/FollowUsSection"));
+const Hero = lazy(() => import("../../Components/Hero/Hero"));
+const AboutUs = lazy(() => import("../../Components/Home/AboutUs"));
+const FeaturedProducts = lazy(() => import("../../Components/Home/FeaturedProducts"));
+const JoinAsRider = lazy(() => import("../../Components/Home/JoinAsRider"));
+const OrderDeliveryInfo = lazy(() => import("../../Components/Home/OrderDeliveryInfo"));
+const SpecialOffer = lazy(() => import("../../Components/Home/SpecialOffer"));
+const WhyChooseUs = lazy(() => import("../../Components/Home/WhyChooseUs"));
+const OurProductSection = lazy(() => import("../../Components/OurProductSection/OurProductSection"));
+const SubHeader = lazy(() => import("../../Components/SubHeader/SubHeader"))
 
 const Home: React.FC = () => {
     return (
         <>
-            <Hero></Hero>
-            <SubHeader></SubHeader>
+            <Suspense fallback={
+                <div className="max-h-screen h-[400px]">
+                    <Loading />
+                </div>
+            }>
+                <Hero></Hero>
+            </Suspense>
+            <Suspense fallback={
+                <div className="max-h-screen lg:h-[265px]">
+                    <Loading />
+                </div>
+            }>
+                <SubHeader></SubHeader>
+            </Suspense>
             <section className="max-w-[90%] mx-auto">
-                <WhyChooseUs />
-                <OrderDeliveryInfo />
-                <FeaturedProducts />
+                <Suspense fallback={<Loading />}>
+                    <WhyChooseUs />
+                </Suspense>
+                <Suspense fallback={<Loading />}>
+                    <OrderDeliveryInfo />
+                </Suspense>
+                <Suspense fallback={<Loading />}>
+                    <FeaturedProducts />
+                </Suspense>
             </section>
-            <OurProductSection></OurProductSection>
+            <Suspense fallback={<Loading />}>
+                <OurProductSection></OurProductSection>
+            </Suspense>
             <section className="max-w-[95%] mx-auto">
-                <SpecialOffer />
+                <Suspense fallback={<Loading />}>
+                    <SpecialOffer />
+                </Suspense>
             </section>
-
-            <FollowUsSection></FollowUsSection>
+            <Suspense fallback={<Loading />}><FollowUsSection></FollowUsSection></Suspense>
             <section className="max-w-[95%] mx-auto">
-                <AboutUs />
-                <JoinAsRider />
+                <Suspense fallback={<Loading />}>
+                    <AboutUs />
+                </Suspense>
+                <Suspense fallback={<Loading />}>
+                    <JoinAsRider />
+                </Suspense>
             </section>
         </>
     );

@@ -12,6 +12,7 @@
 
 * {
   font-family: var(--fontFamily);
+font-size: 1rem;
 }
 body {
   background-image: url("./assets/more/10.png");

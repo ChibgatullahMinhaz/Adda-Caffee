@@ -1,14 +1,6 @@
 import { toast } from "react-toastify";
 import axiosSecureInstance from "../api/axiosSecureInstance";
-
-interface User {
-  name: string;
-  email: string;
-  isOnline: boolean;
-  isActive: boolean;
-  role: string;
-  createdAt: Date;
-}
+import type { User } from "../types/types";
 
 const fetchAllUser = async (): Promise<User[]> => {
   try {

@@ -1,45 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ScrollButton from '../Components/UI/ScrollButton';
-import Navbar from '../Shared/Navbar';
+const Navbar = lazy(() => import('../Shared/Navbar'));
 import { Outlet, useLocation } from 'react-router';
-import Loader from '../Components/UI/Loader';
-import Footer from '../Shared/Footer';
+import Loading from '../Components/ComponentLoading/Loading';
+const Loader = lazy(() => import('../Components/UI/Loader'));
+const Footer = lazy(() => import('../Shared/Footer'));
+import { useTransition } from "react";
 
 const MainLayout: React.FC = () => {
-    const [routeLoading, setRouteLoading] = useState<boolean>(true);
+    const [isPending, startTransition] = useTransition();
+
     const location = useLocation();
 
     useEffect(() => {
-        setRouteLoading(true);
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
+        startTransition(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
-        const timeout = setTimeout(() => {
-            setRouteLoading(false);
-        }, 200);
-        return () => clearTimeout(timeout);
     }, [location]);
     return (
         <>
             <ScrollButton></ScrollButton>
             <header>
                 <nav>
-                    <Navbar></Navbar>
+                    <Suspense
+                        fallback={
+                            <div className="h-[88px] flex items-center justify-center">
+                                <Loading />
+                            </div>
+                        }
+                    >
+                        <Navbar />
+                    </Suspense>
                 </nav>
             </header>
-            <main className="" id="minHight">
-                {routeLoading ? (
-                    <Loader></Loader>
-                ) : (
-                    <Outlet></Outlet>
-
-                )}
+            <main id="minHight">
+                {isPending ? <Loader /> : <Outlet />}
             </main>
 
-            <footer>
-                <Footer></Footer>
-            </footer>
+
+            <Suspense
+                fallback={
+                    <div className="h-[350px] flex items-center justify-center">
+                        <Loading />
+                    </div>
+                }
+            >
+                <Footer />
+            </Suspense>
 
         </>
     );

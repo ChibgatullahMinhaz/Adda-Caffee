@@ -3,46 +3,75 @@ import CoffeeCard from "../../Components/UI/CoffeeCard";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCoffee } from "../../../../api/FetchCoffee";
 import { toast } from "react-toastify";
+import type { Coffee } from "../../../../types/types";
+import { useNavigate } from "react-router";
+import { motion } from "framer-motion";
+import Loader from "../../../../Components/UI/Loader";
 
-interface Coffee {
-  _id: string;
-  name: string;
-  description: string;
-  category: string;
-  price: number;
-  image: string;
-  available: boolean;
-  sizes: string[];
-  currency: string;
-  inStock: boolean;
-  caffeineContent: number;
-  createdAt: Date;
-  updatedAt: Date;
-  calories: number;
-  tags: string[];
-  seasonal: boolean;
-  quantity: number;
-  ingredients: string[];
-  roastLevel: string;
-  origin: string;
-  isSpecial: boolean;
-}
 
 const ProductManagements = () => {
-  const { data = [], error } = useQuery<Coffee[], Error>({
+  const navigate = useNavigate()
+  const { data = [], error, refetch, isLoading } = useQuery<Coffee[], Error>({
     queryKey: ['all-coffee'],
     queryFn: fetchCoffee
   })
   if (error) {
     toast.error(error.message)
   }
-  
+  if (isLoading) {
+    return <Loader />
+  }
+
+  // @ delete single coffee from db
+  const handleDelete = (id: string) => {
+    toast.warn(`delete the coffee ${id}`)
+  }
+  // @ show details of single coffee from db based on own id
+  const handleView = (id: string) => {
+    toast.warn(`view details ${id}`)
+    navigate(`/admin-dashboard/products/details/${id}`)
+  }
+  // @ update an existing coffee
+  const handleEdit = (id: string) => {
+    toast.warn(`Edit this coffee ${id}`)
+    navigate(`/admin-dashboard/products/update/${id}`)
+  }
+
   return (
     <div>
       {data.length == 0 ?
 
         <>
-          <p>not found</p>
+          <div className="flex flex-col items-center justify-center py-20">
+            {/* Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-20 w-20 text-gray-400 mb-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m0 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+
+            {/* Message */}
+            <h2 className="text-2xl font-semibold text-gray-700 mb-2">
+              Oops! No data found
+            </h2>
+            <p className="text-gray-500 text-center max-w-sm">
+              It looks like there is nothing here yet. Please check back later or try a different filter.
+            </p>
+
+            {/* Optional button */}
+            <button onClick={() => refetch()} className="mt-6 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">
+              Refresh
+            </button>
+          </div>
         </>
         :
         <>
@@ -65,7 +94,12 @@ const ProductManagements = () => {
                 {/* row 1 */}
                 {
                   data && data.length !== 0 && data.map((coff, idx) => (
-                    <tr key={idx} className="bg-base-200 hover:cursor-pointer hover:bg-base-100 transition-all duration-300">
+                    <motion.tr key={idx} className="bg-base-200 hover:cursor-pointer hover:bg-base-100 transition-all duration-300"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, amount: 0.3 }}
+                      transition={{ delay: 0.2, duration: 0.5, }}
+                    >
                       <th>{idx + 1}</th>
                       <td>{coff.name}</td>
                       <td>{coff.category}</td>
@@ -75,19 +109,19 @@ const ProductManagements = () => {
                       <td>{coff.available === true ? 'Available' : 'Not Available'}</td>
                       <td className="flex gap-x-2">
                         {/* View Icon */}
-                        <button className="btn btn-sm btn-info text-white flex items-center">
+                        <button onClick={() => handleView(coff._id)} className="btn btn-sm btn-info text-white flex items-center">
                           <Eye size={16} />
                         </button>
                         {/* Update Icon */}
-                        <button className="btn btn-sm btn-warning text-white flex items-center">
+                        <button onClick={() => handleEdit(coff._id)} className="btn btn-sm btn-warning text-white flex items-center">
                           <Pencil size={16} />
                         </button>
                         {/* Delete Icon */}
-                        <button className="btn btn-sm btn-error text-white flex items-center ">
+                        <button onClick={() => handleDelete(coff._id)} className="btn btn-sm btn-error text-white flex items-center ">
                           <Trash2 size={16} />
                         </button>
                       </td>
-                    </tr>
+                    </motion.tr>
                   ))
                 }
               </tbody>

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, type RouteObject } from "react-router";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home/Home";
@@ -5,9 +6,9 @@ import ErrorLayout from "../Layouts/ErrorLayout";
 import OurProductSection from "../Components/OurProductSection/OurProductSection";
 import OurStory from "../Pages/OurStory/OurStory";
 import Signin from "../Components/Auth/Signin";
-import AdminLayout from "../Layouts/AdminLayout";
-import RiderLayout from "../Layouts/RiderLayout";
-import UserDashboard from "../Layouts/UserDashboard";
+const AdminLayout = lazy(() => import("../Layouts/AdminLayout"));
+const RiderLayout = lazy(() => import("../Layouts/RiderLayout"));
+const UserDashboard = lazy(() => import("../Layouts/UserDashboard"))
 import SignUp from "../Components/Auth/SignUp";
 import CustomerHome from "../Dashboards/Customer/Pages/CustomerHome";
 import CustomerInvoice from "../Dashboards/Customer/Pages/CustomerInvoice";
@@ -72,6 +73,7 @@ import SystemMonitoring from "../Dashboards/Admin/Pages/Settings/SystemMonitorin
 import MaintananceMode from "../Dashboards/Admin/Pages/Settings/MaintananceMode";
 import BackupRestore from "../Dashboards/Admin/Pages/Settings/BackupRestore";
 import PaymentsSeting from "../Dashboards/Admin/Pages/Settings/PaymentsSeting";
+import Loading from "../Components/ComponentLoading/Loading";
 
 const routes: RouteObject[] = [
     {
@@ -103,7 +105,13 @@ const routes: RouteObject[] = [
     },
     {
         path: "/admin-dashboard",
-        element: <AdminLayout></AdminLayout>,
+        element:
+            <Suspense fallback={<div className="h-screen">
+                <Loading />
+            </div>}>
+
+                <AdminLayout></AdminLayout>
+            </Suspense>,
         children: [
             {
                 index: true,
@@ -336,7 +344,13 @@ const routes: RouteObject[] = [
     },
     {
         path: "/rider-dashboard",
-        element: <RiderLayout></RiderLayout>,
+        element:
+            <Suspense fallback={<div className="h-screen">
+                <Loading />
+            </div>}>
+                <RiderLayout></RiderLayout>
+            </Suspense>
+        ,
         children: [
             {
                 index: true,
@@ -370,7 +384,13 @@ const routes: RouteObject[] = [
     },
     {
         path: "/customer-dashboard",
-        element: <UserDashboard></UserDashboard>,
+        element:
+            <Suspense fallback={<div className="h-screen">
+                <Loading />
+            </div>}>
+                <UserDashboard></UserDashboard>
+            </Suspense>
+        ,
         children: [
             {
                 index: true,

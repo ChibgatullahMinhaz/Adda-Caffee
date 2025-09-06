@@ -22,3 +22,12 @@ export interface Coffee {
   origin: string;
   isSpecial: boolean;
 }
+
+export interface User {
+  name: string;
+  email: string;
+  isOnline: boolean;
+  isActive: boolean;
+  role: string;
+  createdAt: Date;
+}

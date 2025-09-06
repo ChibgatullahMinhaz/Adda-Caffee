@@ -64,7 +64,7 @@ const AuthProvider: React.FunctionComponent<AuthProviderProps> = ({ children }) 
     }, []);
 
     console.log(user)
-    console.log(userRole)
+    // console.log(userRole)
     const authInfo = {
         user,
         loading,
