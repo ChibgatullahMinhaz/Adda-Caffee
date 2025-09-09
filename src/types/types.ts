@@ -1,11 +1,10 @@
-
 export interface Coffee {
- _id: string;
+  _id: string;
   name: string;
   description: string;
   category: string;
   price: number;
-  image: string;
+  images: FileList | null;
   available: boolean;
   sizes: string[];
   currency: string;
@@ -32,26 +31,24 @@ export interface User {
   createdAt: Date;
 }
 
-
-
 export interface CoffeeFormData {
-    name: string;
-    category: string;
-    description: string;
-    price: number;
-    sizes: string[];
-    currency: string;
-    inStock: boolean;
-    caffeineContent: number;
-    ratings: number;
-    calories: number;
-    tags: string[];
-    image: string;
-    seasonal: boolean;
-    quantity: number;
-    ingredients: string[];
-    roastLevel: string;
-    origin: string;
-    available: boolean;
-    isSpecial: boolean;
+  name: string;
+  category: string;
+  description: string;
+  price: number;
+  sizes: string[];
+  currency: string;
+  inStock: boolean;
+  caffeineContent: number;
+  ratings: number;
+  calories: number;
+  tags: string[];
+  images?: FileList;
+  seasonal: boolean;
+  quantity: number;
+  ingredients: string[];
+  roastLevel: string;
+  origin: string;
+  available: boolean;
+  isSpecial: boolean;
 }

@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 
 const ProductManagements = () => {
   const navigate = useNavigate()
-  const { data = [], error, refetch, isLoading } = useQuery<Coffee[], Error>({
+  const { data, error, refetch, isLoading } = useQuery<Coffee[], Error>({
     queryKey: ['all-coffee'],
     queryFn: fetchCoffee
   })
@@ -59,7 +59,6 @@ const ProductManagements = () => {
   };
   // @ show details of single coffee from db based on own id
   const handleView = (id: string) => {
-    toast.warn(`view details ${id}`)
     navigate(`/admin-dashboard/products/details/${id}`)
   }
   // @ update an existing coffee
@@ -67,11 +66,14 @@ const ProductManagements = () => {
     toast.warn(`Edit this coffee ${id}`)
     navigate(`/admin-dashboard/products/update/${id}`)
   }
+  if (!Array.isArray(data)) {
+    toast.warning(data)
+  }
+  const coffeeList = Array.isArray(data) ? data : [];
 
   return (
     <div>
-      {data.length == 0 ?
-
+      {coffeeList.length == 0 ?
         <>
           <div className="flex flex-col items-center justify-center py-20">
             {/* Icon */}
@@ -99,7 +101,7 @@ const ProductManagements = () => {
             </p>
 
             {/* Optional button */}
-            <button onClick={() => refetch()} className="mt-6 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">
+            <button onClick={() => refetch()} className="mt-6 px-6 py-2 cursor-pointer bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">
               Refresh
             </button>
           </div>
@@ -160,7 +162,7 @@ const ProductManagements = () => {
           </div>
           {/* card layout for sm device */}
           <div className="grid gap-4 sm:hidden mt-4">
-            {data.map((coff) => (
+            {coffeeList.map((coff) => (
               <div
                 key={coff._id}
                 className="card bg-base-200 shadow-md rounded-xl p-4"

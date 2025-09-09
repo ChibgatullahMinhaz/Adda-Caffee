@@ -1,18 +1,10 @@
-import { useForm } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import type { CoffeeFormData } from "../../../../types/types";
 import { addCoffee } from "../../../../api/addCoffee";
+import { toast } from "react-toastify";
+import { ALLOWED_SIZES, categories } from "../../../../javascript/categoryObject";
 
 
-
-const categories = [
-    "Espresso", "Americano", "Latte", "Cappuccino", "Mocha", "Macchiato",
-    "Flat White", "Ristretto", "Long Black", "Cold Brew", "Iced Latte",
-    "Iced Mocha", "Frappuccino", "Affogato", "Irish Coffee", "Caffè macchiato",
-    "Flat white", "Cortado", "Café au lait", "Iced coffee", "Doppio", "Frappe",
-    "Red Eye", "Lungo", "Coffee with cream", "Turkish coffee", "Breve",
-    "Coffea arabica", "Café Cubano", "Other"
-];
-const ALLOWED_SIZES = ["small", "medium", "large"];
 
 
 const AddProducts: React.FunctionComponent = () => {
@@ -34,7 +26,7 @@ const AddProducts: React.FunctionComponent = () => {
             ratings: 0,
             calories: 0,
             tags: [],
-            image: "",
+            images: undefined,
             seasonal: false,
             quantity: 0,
             ingredients: [],
@@ -46,23 +38,170 @@ const AddProducts: React.FunctionComponent = () => {
     });
 
 
+    // const onSubmit: SubmitHandler<CoffeeFormData> = (data) => {
+    //     const files = data.images;
+
+    //     if (!files || files.length === 0) {
+    //         toast.error("Please select at least 1 image");
+    //         return;
+    //     }
+
+    //     if (files.length > 5) {
+    //         toast.error("You can upload a maximum of 5 images");
+    //         return;
+    //     }
+
+    //     // convert comma separated strings to array
+    //     const tags = (data.tags as unknown as string)
+    //         .split(",")
+    //         .map((t) => t.trim());
+    //     const ingredients = (data.ingredients as unknown as string)
+    //         .split(",")
+    //         .map((i) => i.trim());
+
+    //     // @ FormData is api type ,,,, 
+    //     const formData = new FormData();
+
+    //     Array.from(files).forEach((file) => formData.append("images", file));
+    //     formData.append("name", data.name);
+    //     formData.append("category", data.category);
+    //     formData.append("description", data.description);
+    //     formData.append("price", String(data.price));
+    //     data.sizes.forEach((size) => formData.append("sizes", size))
+    //     formData.append("currency", data.currency);
+    //     formData.append("inStock", String(data.inStock));
+    //     formData.append("caffeineContent", String(data.caffeineContent));
+    //     formData.append("ratings", String(data.ratings));
+    //     formData.append("calories", String(data.calories));
+    //     formData.append("tags", tags.join(","));
+    //     formData.append("seasonal", String(data.seasonal));
+    //     formData.append("quantity", String(data.quantity));
+    //     formData.append("ingredients", ingredients.join(","));
+    //     formData.append("roastLevel", data.roastLevel);
+    //     formData.append("origin", data.origin);
+    //     formData.append("available", String(data.available));
+    //     formData.append("isSpecial", String(data.isSpecial));
+
+    //     addCoffee(formData)
+    //     reset();
+    // };
 
 
-    const onSubmit = (data: CoffeeFormData) => {
-        // convert comma separated values into arrays
-        data.tags = (data.tags as unknown as string).split(",").map(t => t.trim());
-        data.ingredients = (data.ingredients as unknown as string).split(",").map(i => i.trim());
-        console.log("Submitted Data:", data);
-        addCoffee(data)
-        reset();
-    };
+    const onSubmit: SubmitHandler<CoffeeFormData> = (data) => {
+    const files = data.images; 
+    // @ 'data.images' theke file input gulo collect korchi. 
+    //   Eta user jeta upload korbe tar jonno.
+
+    if (!files || files.length === 0) {
+        toast.error("Please select at least 1 image");
+        return;
+    }
+    // @ Check korchi j user kono image select koreche kina.
+    //   Jodi kono image na thake, toast message dekhai ar function terminate kori.
+
+    if (files.length > 5) {
+        toast.error("You can upload a maximum of 5 images");
+        return;
+    }
+    // @ Check korchi j 5 er beshi image upload na hoye. 
+    //   Backend/multer limit er jonno restriction.
+
+    // convert comma separated strings to array
+    const tags = (data.tags as unknown as string)
+        .split(",")
+        .map((t) => t.trim());
+    // @ User input e tags comma separated string hisebe ashte pare. 
+    //   Eita array te convert korchi, ar extra space trim korchi.
+
+    const ingredients = (data.ingredients as unknown as string)
+        .split(",")
+        .map((i) => i.trim());
+    // @ Ingredients field o same vabe comma separated thakte pare. 
+    //   Array te convert korchi, backend easily handle korte pare.
+
+    // @ FormData is api type ,,,, 
+    const formData = new FormData(); 
+    // @ FormData object create korchi, jeta multipart/form-data hisebe backend e pathano hoy.
+    //   Eta file upload er jonno compulsory.
+
+    Array.from(files).forEach((file) => formData.append("images", file));
+    // @ User select kora prottek file FormData te append korchi.
+    //   'images' key ta backend e multer er field name er shathe match korte hobe.
+
+    formData.append("name", data.name);
+    // @ Product name FormData te add korchi. 
+    //   Backend e DB te save korar jonno.
+
+    formData.append("category", data.category);
+    // @ Coffee category add korchi. Default 'Other' hote pare.
+
+    formData.append("description", data.description);
+    // @ Product description add korchi. Required field.
+
+    formData.append("price", String(data.price));
+    // @ Price add korchi. FormData always string accept kore, tai String() use korchi.
+
+    data.sizes.forEach((size) => formData.append("sizes", size))
+    // @ Sizes checkbox theke array asche. Prottek size individually append korchi.
+    //   Eita enum array validation error prevent korbe.
+
+    formData.append("currency", data.currency);
+    // @ Currency field add korchi (BDT / USD etc.)
+
+    formData.append("inStock", String(data.inStock));
+    // @ In stock checkbox boolean value ke string e convert kore add korchi.
+
+    formData.append("caffeineContent", String(data.caffeineContent));
+    // @ Caffeine content numeric field add korchi, string e convert kore.
+
+    formData.append("ratings", String(data.ratings));
+    // @ Ratings field DB save er jonno add korchi.
+
+    formData.append("calories", String(data.calories));
+    // @ Calories field add korchi.
+
+    formData.append("tags", tags.join(","));
+    // @ Tags array ke comma separated string e convert kore add korchi, 
+    //   jate backend easily parse korte pare.
+
+    formData.append("seasonal", String(data.seasonal));
+    // @ Seasonal checkbox boolean ke string e convert kore add korchi.
+
+    formData.append("quantity", String(data.quantity));
+    // @ Quantity field add korchi. String e convert.
+
+    formData.append("ingredients", ingredients.join(","));
+    // @ Ingredients array ke comma separated string e convert kore add korchi.
+
+    formData.append("roastLevel", data.roastLevel);
+    // @ Roast level add korchi (Light, Medium, Dark etc.)
+
+    formData.append("origin", data.origin);
+    // @ Origin field add korchi. Product origin DB e save hobe.
+
+    formData.append("available", String(data.available));
+    // @ Available checkbox value string e convert kore add korchi.
+
+    formData.append("isSpecial", String(data.isSpecial));
+    // @ Special checkbox value string e convert kore add korchi.
+
+    addCoffee(formData)
+    // @ Finally FormData ta addCoffee function e pathachi. 
+    //   Eta backend e post request hisebe chole jabe, jekhane multer handle korbe.
+
+    reset();
+    // @ Form submit er por form reset kore dichi. 
+    //   Sob input blank hoye jabe ar user nobo product add korte parbe.
+};
+
+
 
     return (
         <div>
             <h2 className="text-2xl font-bold mb-4 text-center md:text-4xl">
                 Add New Coffee
             </h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} method="post">
                 <div className="text-xl bg-base-200">
                     <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 border-blue-500">
                         {/* Basic Info */}
@@ -232,12 +371,13 @@ const AddProducts: React.FunctionComponent = () => {
                             placeholder="coffee, blackCoffee"
                         />
 
-                        <label className="label">Image URL</label>
+                        <label className="label">Upload Product Images</label>
                         <input
-                            type="text"
-                            {...register("image")}
-                            className="input w-full"
-                            placeholder="https://example.com/image.jpg"
+                            type="file"
+                            {...register("images")}
+                            className="file-input w-full"
+                            name="images"
+                            multiple
                         />
                     </fieldset>
                 </div>

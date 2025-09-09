@@ -1,19 +1,23 @@
 import React from 'react';
 import type { Coffee } from '../../../../types/types';
-interface CoffeeDetailsPageProps  {
+interface CoffeeDetailsPageProps {
     data: Coffee
 }
-const CoffeeDetailsPage: React.FC<CoffeeDetailsPageProps> = ({data}) => {
+const CoffeeDetailsPage: React.FC<CoffeeDetailsPageProps> = ({ data }) => {
+    console.log(data)
     return (
         <div className="max-w-6xl mx-auto p-6 bg-white rounded-xl shadow-md mt-6">
             <div className="flex flex-col md:flex-row gap-6">
                 {/* Left Side - Image */}
                 <div className="md:w-1/2 flex justify-center items-start">
-                    <img
-                        src={data.image}
-                        alt={data.name}
-                        className="rounded-xl object-cover w-full h-[400px] shadow-lg"
-                    />
+                    {data?.images?.map((img, index) => (
+                        <img
+                            key={index}
+                            src={`http://localhost:5000${img}`}
+                            alt={`coffee-${index}`}
+                            className="w-32 h-32 object-cover rounded"
+                        />
+                    ))}
                 </div>
 
                 {/* Right Side - Info */}
