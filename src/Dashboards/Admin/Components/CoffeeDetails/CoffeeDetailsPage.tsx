@@ -1,23 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Coffee } from '../../../../types/types';
+
 interface CoffeeDetailsPageProps {
-    data: Coffee
+    data: Coffee;
 }
+
+// @ BASE URL 
+const baseUrl = import.meta.env.VITE_BASE_URL
+
 const CoffeeDetailsPage: React.FC<CoffeeDetailsPageProps> = ({ data }) => {
-    console.log(data)
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+    // Select first image by default if images exist
+    useEffect(() => {
+        if (data.images && data.images.length > 0) {
+            setSelectedImage(`${baseUrl}/uploads/${data.images[0]}`);
+        }
+    }, [data.images]);
+    const filesArray = Array.from(data.images || []);
     return (
         <div className="max-w-6xl mx-auto p-6 bg-white rounded-xl shadow-md mt-6">
             <div className="flex flex-col md:flex-row gap-6">
-                {/* Left Side - Image */}
-                <div className="md:w-1/2 flex justify-center items-start">
-                    {data?.images?.map((img, index) => (
-                        <img
-                            key={index}
-                            src={`http://localhost:5000${img}`}
-                            alt={`coffee-${index}`}
-                            className="w-32 h-32 object-cover rounded"
-                        />
-                    ))}
+                {/* Left Side - Image Gallery */}
+                <div className="md:w-1/2 flex flex-col md:flex-row gap-4">
+                    {/* Main Image */}
+                    <div className="w-full md:w-3/4">
+                        {selectedImage ? (
+                            <img
+                                src={selectedImage}
+                                alt="Selected coffee"
+                                className="w-full h-auto object-cover rounded"
+                            />
+                        ) : (
+                            <div className="w-full h-64 bg-gray-200 flex items-center justify-center rounded">
+                                No Image
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Thumbnails */}
+                    <div className="flex md:flex-col gap-2 mt-4 md:mt-0 md:w-1/4 overflow-x-auto md:overflow-y-auto">
+
+
+                        {filesArray.map((img, index) => {
+                            const fullUrl = `${baseUrl}/uploads/${img}`;
+                            return (
+                                <img
+                                    key={index}
+                                    src={fullUrl}
+                                    alt={`coffee-${index}`}
+                                    className={`w-20 h-20 object-cover rounded cursor-pointer border-2 ${selectedImage === fullUrl ? 'border-blue-500' : 'border-gray-200'
+                                        }`}
+                                    onClick={() => setSelectedImage(fullUrl)}
+                                />
+                            );
+                        })}
+                    </div>
                 </div>
 
                 {/* Right Side - Info */}
@@ -32,9 +70,7 @@ const CoffeeDetailsPage: React.FC<CoffeeDetailsPageProps> = ({ data }) => {
                         </div>
                         <div>
                             <p className="font-semibold text-gray-700">Price:</p>
-                            <p className="text-gray-500">
-                                {data.price} {data.currency}
-                            </p>
+                            <p className="text-gray-500">{data.price} {data.currency}</p>
                         </div>
                         <div>
                             <p className="font-semibold text-gray-700">Origin:</p>
@@ -62,15 +98,11 @@ const CoffeeDetailsPage: React.FC<CoffeeDetailsPageProps> = ({ data }) => {
                         </div>
                         <div>
                             <p className="font-semibold text-gray-700">Stock:</p>
-                            <p className="text-gray-500">
-                                {data.inStock ? "In Stock" : "Out of Stock"}
-                            </p>
+                            <p className="text-gray-500">{data.inStock ? "In Stock" : "Out of Stock"}</p>
                         </div>
                         <div>
                             <p className="font-semibold text-gray-700">Available:</p>
-                            <p className="text-gray-500">
-                                {data.available ? "Yes" : "No"}
-                            </p>
+                            <p className="text-gray-500">{data.available ? "Yes" : "No"}</p>
                         </div>
                         <div>
                             <p className="font-semibold text-gray-700">Special:</p>
