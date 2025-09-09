@@ -7,6 +7,8 @@ import type { Coffee } from "../../../../types/types";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import Loader from "../../../../Components/UI/Loader";
+import axiosSecureInstance from "../../../../api/axiosSecureInstance";
+import Swal from "sweetalert2";
 
 
 const ProductManagements = () => {
@@ -23,9 +25,38 @@ const ProductManagements = () => {
   }
 
   // @ delete single coffee from db
-  const handleDelete = (id: string) => {
-    toast.warn(`delete the coffee ${id}`)
-  }
+
+  const handleDelete = async (id: string) => {
+    // Show confirmation dialog
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await axiosSecureInstance.delete(`/coffees/${id}`);
+        if (res.data) {
+          toast.success("Deleted Successfully!");
+          refetch()
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(error.message);
+          throw error;
+        } else {
+          toast.error("An unexpected error occurred");
+          throw new Error("An unexpected error occurred");
+        }
+      }
+    }
+  };
   // @ show details of single coffee from db based on own id
   const handleView = (id: string) => {
     toast.warn(`view details ${id}`)
