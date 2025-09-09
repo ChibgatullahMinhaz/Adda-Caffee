@@ -44,7 +44,7 @@ const ProductManagements = () => {
         const res = await axiosSecureInstance.delete(`/coffees/${id}`);
         if (res.data) {
           toast.success("Deleted Successfully!");
-          refetch()
+          refetch();
         }
       } catch (error) {
         if (error instanceof Error) {
