@@ -12,6 +12,7 @@ const WhyChooseUs = lazy(() => import("../../Components/Home/WhyChooseUs"));
 const OurProductSection = lazy(() => import("../../Components/OurProductSection/OurProductSection"));
 const SubHeader = lazy(() => import("../../Components/SubHeader/SubHeader"))
 
+
 const Home: React.FC = () => {
     return (
         <>
@@ -22,6 +23,7 @@ const Home: React.FC = () => {
             }>
                 <Hero></Hero>
             </Suspense>
+
             <Suspense fallback={
                 <div className="max-h-screen lg:h-[265px]">
                     <Loading />

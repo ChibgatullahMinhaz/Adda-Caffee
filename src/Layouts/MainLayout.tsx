@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import ScrollButton from '../Components/UI/ScrollButton';
 const Navbar = lazy(() => import('../Shared/Navbar'));
 import { Outlet, useLocation } from 'react-router';
@@ -9,14 +9,14 @@ import { useTransition } from "react";
 
 const MainLayout: React.FC = () => {
     const [isPending, startTransition] = useTransition();
-
     const location = useLocation();
-
+    const handleScroll = useCallback(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [])
     useEffect(() => {
-        startTransition(() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    }, [location]);
+        startTransition(() => handleScroll());
+    }, [location, handleScroll]);
+    
     return (
         <>
             <ScrollButton></ScrollButton>

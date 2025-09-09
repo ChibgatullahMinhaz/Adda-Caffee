@@ -31,3 +31,27 @@ export interface User {
   role: string;
   createdAt: Date;
 }
+
+
+
+export interface CoffeeFormData {
+    name: string;
+    category: string;
+    description: string;
+    price: number;
+    sizes: string[];
+    currency: string;
+    inStock: boolean;
+    caffeineContent: number;
+    ratings: number;
+    calories: number;
+    tags: string[];
+    image: string;
+    seasonal: boolean;
+    quantity: number;
+    ingredients: string[];
+    roastLevel: string;
+    origin: string;
+    available: boolean;
+    isSpecial: boolean;
+}

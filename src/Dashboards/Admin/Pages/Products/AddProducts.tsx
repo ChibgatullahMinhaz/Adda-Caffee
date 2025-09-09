@@ -1,27 +1,9 @@
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import type { CoffeeFormData } from "../../../../types/types";
+import { addCoffee } from "../../../../api/addCoffee";
 
-interface CoffeeFormData {
-    name: string;
-    category: string;
-    description: string;
-    price: number;
-    sizes: string[];
-    currency: string;
-    inStock: boolean;
-    caffeineContent: number;
-    ratings: number;
-    calories: number;
-    tags: string[];
-    image: string;
-    seasonal: boolean;
-    quantity: number;
-    ingredients: string[];
-    roastLevel: string;
-    origin: string;
-    available: boolean;
-    isSpecial: boolean;
-}
+
+
 const categories = [
     "Espresso", "Americano", "Latte", "Cappuccino", "Mocha", "Macchiato",
     "Flat White", "Ristretto", "Long Black", "Cold Brew", "Iced Latte",
@@ -30,8 +12,16 @@ const categories = [
     "Red Eye", "Lungo", "Coffee with cream", "Turkish coffee", "Breve",
     "Coffea arabica", "Café Cubano", "Other"
 ];
-const AddProducts = () => {
-    const { register, handleSubmit, formState:{errors} } = useForm<CoffeeFormData>({
+const ALLOWED_SIZES = ["small", "medium", "large"];
+
+
+const AddProducts: React.FunctionComponent = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset
+    } = useForm<CoffeeFormData>({
         defaultValues: {
             name: "",
             category: "Other",
@@ -55,130 +45,208 @@ const AddProducts = () => {
         }
     });
 
+
+
+
     const onSubmit = (data: CoffeeFormData) => {
-        console.log(data);
-        toast.success("Coffee added successfully!");
-        // reset(); // reset form after submission
-        // Here you can call your API to save the coffee
+        // convert comma separated values into arrays
+        data.tags = (data.tags as unknown as string).split(",").map(t => t.trim());
+        data.ingredients = (data.ingredients as unknown as string).split(",").map(i => i.trim());
+        console.log("Submitted Data:", data);
+        addCoffee(data)
+        reset();
     };
 
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-4 text-center md:text-4xl">Add New Coffee</h2>
-            <form onSubmit={handleSubmit(onSubmit)} >
-
-                <div className="text-xl  bg-base-200 ">
-
-                    <div className='bg-base-200 grid grid-cols-1 sm:grid-cols-2 border-blue-500'>
-                        {/* basic info */}
-                        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 text-2xl">
+            <h2 className="text-2xl font-bold mb-4 text-center md:text-4xl">
+                Add New Coffee
+            </h2>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="text-xl bg-base-200">
+                    <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 border-blue-500">
+                        {/* Basic Info */}
+                        <fieldset className="fieldset border p-4">
                             <legend className="fieldset-legend">Basic Info</legend>
+
                             {/* name */}
-                            <label htmlFor='name' className="label">Name</label>
-                            <input type="text" {...register("name", { required: "Name is required" })} className="input w-full" name="name" placeholder="Enter Product Name" />
-                            {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+                            <label className="label">Name</label>
+                            <input
+                                type="text"
+                                {...register("name", { required: "Name is required" })}
+                                className="input w-full"
+                                placeholder="Enter Product Name"
+                            />
+                            {errors.name && (
+                                <p className="text-red-500">{errors.name.message}</p>
+                            )}
+
                             {/* category */}
-                            <div>
-                                <label htmlFor="category" className="label">Category</label>
-                                <select {...register("category")} className="select select-bordered w-full">
-                                    {categories.map((cat) => (
-                                        <option key={cat} value={cat}>{cat}</option>
-                                    ))}
-                                </select>
-                            </div>
+                            <label className="label">Category</label>
+                            <select {...register("category")} className="select select-bordered w-full">
+                                {categories.map(cat => (
+                                    <option key={cat} value={cat}>
+                                        {cat}
+                                    </option>
+                                ))}
+                            </select>
+
                             {/* description */}
-                            <label htmlFor='description' className="label text-xl">description</label>
-                            <input type="text" {...register("description", { required: "Description is required" })} className="input w-full" name="description" placeholder="Enter Product Description " />
-                            {errors.description && <p className='text-red-500'> {errors.description.message}</p>}
+                            <label className="label">Description</label>
+                            <input
+                                type="text"
+                                {...register("description", { required: "Description is required" })}
+                                className="input w-full"
+                                placeholder="Enter Product Description"
+                            />
+                            {errors.description && (
+                                <p className="text-red-500">{errors.description.message}</p>
+                            )}
+
                             {/* origin */}
-                            <label htmlFor='origin' className="label text-xl">Origin</label>
-                            <input type="text" {...register("origin", { required: "origin is Required" })} className="input w-full" name="origin" placeholder="Enter Product origin " />
+                            <label className="label">Origin</label>
+                            <input
+                                type="text"
+                                {...register("origin", { required: "Origin is required" })}
+                                className="input w-full"
+                                placeholder="Enter Product Origin"
+                            />
 
-                            <label htmlFor='ingredients' className="label text-xl">Ingredients(Comma Saparator)</label>
-                            <input type="text" className="input w-full" name="description" placeholder="Enter Product ingredients with comma separator(e,g:oreng,oloer,) " />
+                            {/* ingredients */}
+                            <label className="label">Ingredients (comma separated)</label>
+                            <input
+                                type="text"
+                                {...register("ingredients")}
+                                className="input w-full"
+                                placeholder="sugar, milk, cocoa"
+                            />
 
-
-                            <label htmlFor='roastLevel' className="label text-xl">RoastLevel</label>
-                            <input type="text" className="input w-full" name="description" placeholder="Enter roastLevel " />
+                            {/* roast level */}
+                            <label className="label">Roast Level</label>
+                            <input
+                                type="text"
+                                {...register("roastLevel")}
+                                className="input w-full"
+                                placeholder="Light, Medium, Dark"
+                            />
                         </fieldset>
 
-
                         {/* Pricing & Stock */}
-                        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                        <fieldset className="fieldset border p-4">
                             <legend className="fieldset-legend">Pricing & Stock</legend>
 
-                            <label htmlFor='price' className="label">Price</label>
-                            <input type="number" className="input w-full" placeholder="Enter Product Price min(0)" min={0} />
+                            <label className="label">Price</label>
+                            <input
+                                type="number"
+                                {...register("price", { valueAsNumber: true, min: 0 })}
+                                className="input w-full"
+                                placeholder="Enter Product Price"
+                            />
 
-                            <label className="label" htmlFor='currency'>Currency</label>
-                            <input type="text" className="input w-full" placeholder="Enter currency(e,g: BDT, INR, USD)" />
+                            <label className="label">Currency</label>
+                            <input
+                                type="text"
+                                {...register("currency")}
+                                className="input w-full"
+                                placeholder="BDT / USD"
+                            />
 
-                            <label className="label" htmlFor='quantity'>Quantity</label>
-                            <input type="number" className="input w-full" placeholder="Enter Product quantity in Number " />
+                            <label className="label">Quantity</label>
+                            <input
+                                type="number"
+                                {...register("quantity", { valueAsNumber: true, min: 0 })}
+                                className="input w-full"
+                                placeholder="Quantity"
+                            />
 
-                            <label className="label" htmlFor='sizes'>Sizes*</label>
-                            <input type="text" name='sizes' className="input w-full" placeholder="Enter Product size (e,g:small, medium, large) " />
+                            <label className="label">Sizes</label>
+                            <div className="flex gap-3">
+                                {ALLOWED_SIZES.map(size => (
+                                    <label key={size} className="flex items-center gap-1">
+                                        <input
+                                            type="checkbox"
+                                            value={size}
+                                            {...register("sizes")}
+                                            className="checkbox"
+                                        />
+                                        {size}
+                                    </label>
+                                ))}
+                            </div>
 
-                            {/* Available */}
+
+                            {/* stock checkboxes */}
                             <div className="flex items-center gap-2">
-                                <label htmlFor="InStock" className='label'>InStock</label>
+                                <label className="label">In Stock</label>
                                 <input type="checkbox" {...register("inStock")} className="checkbox" />
                             </div>
-                            {/* inStock */}
+
                             <div className="flex items-center gap-2">
-                                <label htmlFor="available" className='label'>Available: </label>
+                                <label className="label">Available</label>
                                 <input type="checkbox" {...register("available")} className="checkbox" />
                             </div>
                         </fieldset>
-
                     </div>
-                    {/* Attributes / Features */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-                        <legend className="fieldset-legend">Attributes / Features</legend>
 
-                        <label className="label" htmlFor='caffeineContent'>CaffeineContent</label>
-                        <input type="text" className="input w-full" placeholder="Enter caffeineContent" />
-
+                    {/* Attributes */}
+                    <fieldset className="fieldset border p-4">
+                        <legend className="fieldset-legend">Attributes</legend>
+                        <label className="label">Caffeine Content (mg)</label>
+                        <input
+                            type="number"
+                            {...register("caffeineContent", { valueAsNumber: true })}
+                            className="input w-full"
+                        />
 
                         <div className="flex items-center gap-2">
-                            <label htmlFor="Seasonal" className='label'>Seasonal: </label>
+                            <label className="label">Seasonal</label>
                             <input type="checkbox" {...register("seasonal")} className="checkbox" />
                         </div>
 
-
-                        {/* isSpecial */}
                         <div className="flex items-center gap-2">
-                            <label htmlFor="isSpecial" className='label'>isSpecial: </label>
+                            <label className="label">Special</label>
                             <input type="checkbox" {...register("isSpecial")} className="checkbox" />
-
                         </div>
                     </fieldset>
 
-                    {/* Nutritional Info */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-                        <legend className="fieldset-legend">Page details</legend>
-
-                        <label className="label" htmlFor='calories'>Calories</label>
-                        <input type="number" className="input w-full" placeholder="calories in number" />
-
+                    {/* Nutrition */}
+                    <fieldset className="fieldset border p-4">
+                        <legend className="fieldset-legend">Nutrition</legend>
+                        <label className="label">Calories</label>
+                        <input
+                            type="number"
+                            {...register("calories", { valueAsNumber: true })}
+                            className="input w-full"
+                            placeholder="Calories"
+                        />
                     </fieldset>
-
 
                     {/* Media & Tags */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
+                    <fieldset className="fieldset border p-4">
                         <legend className="fieldset-legend">Media & Tags</legend>
+                        <label className="label">Tags (comma separated)</label>
+                        <input
+                            type="text"
+                            {...register("tags")}
+                            className="input w-full"
+                            placeholder="coffee, blackCoffee"
+                        />
 
-                        <label className="label" htmlFor='tags'>Tags(comma Separator)</label>
-                        <input type="text" className="input w-full" placeholder="Enter tags(e,g:coffee, blackCoffee)" />
-
-                        <label className="label" htmlFor='imageUpload'>Upload Image: </label>
-                        <input type="file" className="input w-full" placeholder="Select image form your computer" />
-
+                        <label className="label">Image URL</label>
+                        <input
+                            type="text"
+                            {...register("image")}
+                            className="input w-full"
+                            placeholder="https://example.com/image.jpg"
+                        />
                     </fieldset>
-                    {/* Submit Button */}
                 </div>
+
+                {/* Submit */}
                 <div>
-                    <button type="submit" className="btn btn-primary w-full ">Add Product</button>
+                    <button type="submit" className="btn btn-primary w-full">
+                        Add Product
+                    </button>
                 </div>
             </form>
         </div>
