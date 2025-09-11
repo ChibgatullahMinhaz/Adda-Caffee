@@ -57,3 +57,4 @@ export interface CoffeeFormData {
 export interface categoriesType {
   categories: string
 }
+
