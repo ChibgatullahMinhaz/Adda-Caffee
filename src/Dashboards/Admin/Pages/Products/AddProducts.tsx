@@ -37,56 +37,6 @@ const AddProducts: React.FunctionComponent = () => {
         }
     });
 
-
-    // const onSubmit: SubmitHandler<CoffeeFormData> = (data) => {
-    //     const files = data.images;
-
-    //     if (!files || files.length === 0) {
-    //         toast.error("Please select at least 1 image");
-    //         return;
-    //     }
-
-    //     if (files.length > 5) {
-    //         toast.error("You can upload a maximum of 5 images");
-    //         return;
-    //     }
-
-    //     // convert comma separated strings to array
-    //     const tags = (data.tags as unknown as string)
-    //         .split(",")
-    //         .map((t) => t.trim());
-    //     const ingredients = (data.ingredients as unknown as string)
-    //         .split(",")
-    //         .map((i) => i.trim());
-
-    //     // @ FormData is api type ,,,, 
-    //     const formData = new FormData();
-
-    //     Array.from(files).forEach((file) => formData.append("images", file));
-    //     formData.append("name", data.name);
-    //     formData.append("category", data.category);
-    //     formData.append("description", data.description);
-    //     formData.append("price", String(data.price));
-    //     data.sizes.forEach((size) => formData.append("sizes", size))
-    //     formData.append("currency", data.currency);
-    //     formData.append("inStock", String(data.inStock));
-    //     formData.append("caffeineContent", String(data.caffeineContent));
-    //     formData.append("ratings", String(data.ratings));
-    //     formData.append("calories", String(data.calories));
-    //     formData.append("tags", tags.join(","));
-    //     formData.append("seasonal", String(data.seasonal));
-    //     formData.append("quantity", String(data.quantity));
-    //     formData.append("ingredients", ingredients.join(","));
-    //     formData.append("roastLevel", data.roastLevel);
-    //     formData.append("origin", data.origin);
-    //     formData.append("available", String(data.available));
-    //     formData.append("isSpecial", String(data.isSpecial));
-
-    //     addCoffee(formData)
-    //     reset();
-    // };
-
-
     const onSubmit: SubmitHandler<CoffeeFormData> = (data) => {
     const files = data.images; 
     // @ 'data.images' theke file input gulo collect korchi. 

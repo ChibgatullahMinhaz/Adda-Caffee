@@ -17,6 +17,8 @@ const CoffeeDetailsPage: React.FC<CoffeeDetailsPageProps> = ({ data }) => {
             setSelectedImage(`${baseUrl}/uploads/${data.images[0]}`);
         }
     }, [data.images]);
+
+    // @ convert in array from fileList for avoiding ts warning
     const filesArray = Array.from(data.images || []);
     return (
         <div className="max-w-6xl mx-auto p-6 bg-white rounded-xl shadow-md mt-6">

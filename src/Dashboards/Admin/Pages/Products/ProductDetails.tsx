@@ -9,9 +9,8 @@ const CoffeeDetailsPage = lazy(() => import("../../Components/CoffeeDetails/Coff
 
 export default function ProductDetails() {
   const { productId } = useParams<{ productId: string }>()
-  const { data , error, refetch, isLoading } = useQuery<Coffee, Error>({
+  const { data, error, refetch, isLoading } = useQuery<Coffee, Error>({
     queryKey: ['coffee-details', productId],
-
     queryFn: () => {
       if (!productId) {
         throw new Error('Product ID is missing!')
@@ -19,7 +18,6 @@ export default function ProductDetails() {
       return getCoffeeDetailsAdminSide(productId)
     },
     enabled: !!productId,
-
   })
 
   // @ Handle error 
@@ -27,7 +25,7 @@ export default function ProductDetails() {
     toast.error(error.message);
     return <div>Error fetching coffee details.</div>;
   }
-    if (isLoading) return <Loader />;
+  if (isLoading) return <Loader />;
 
 
   //@ handle no data 

@@ -50,12 +50,7 @@ const Categories: React.FunctionComponent = () => {
     }
   })
 
-  const onSubmit = (data: CoffeeFormData) => {
-    console.log(data);
-    toast.success("Coffee added successfully!");
-    // reset(); // reset form after submission
-    // Here you can call your API to save the coffee
-  };
+
 
 
 

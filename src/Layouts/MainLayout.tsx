@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect } from 'react';
 import ScrollButton from '../Components/UI/ScrollButton';
 const Navbar = lazy(() => import('../Shared/Navbar'));
 import { Outlet, useLocation } from 'react-router';
