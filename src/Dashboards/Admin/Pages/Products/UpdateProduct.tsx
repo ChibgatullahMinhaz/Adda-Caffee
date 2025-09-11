@@ -54,7 +54,11 @@ const UpdateProduct: React.FC = () => {
 
   const onSubmit: SubmitHandler<CoffeeFormData> = (formValues) => {
     const formData = new FormData();
-
+    // ✅ Validate max 5 images
+    if (formValues.images && formValues.images.length > 5) {
+      toast.error("You can upload a maximum of 5 images");
+      return; // prevent submission
+    }
     const tags = formValues.tags.split(',').map(t => t.trim()).filter(Boolean);
     const ingredients = formValues.ingredients.split(',').map(i => i.trim()).filter(Boolean);
 
@@ -70,7 +74,6 @@ const UpdateProduct: React.FC = () => {
     formData.append('currency', formValues.currency);
     formData.append('inStock', String(formValues.inStock));
     formData.append('caffeineContent', String(formValues.caffeineContent));
-    formData.append('ratings', String(formValues.ratings));
     formData.append('calories', String(formValues.calories));
     formData.append('tags', tags.join(','));
     formData.append('ingredients', ingredients.join(','));
