@@ -9,7 +9,7 @@ const useAddCategory = () => {
   const addCategory = useMutation({
     mutationFn: (formData: categoriesType) => addCategories(formData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["categories"] });
+      queryClient.invalidateQueries({ queryKey: ["all-categories"] });
       toast.success("Category Add Successfully");
     },
   });

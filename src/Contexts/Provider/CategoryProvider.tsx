@@ -10,9 +10,8 @@ interface CategoryType {
     children: ReactNode
 }
 const CategoryProvider: React.FunctionComponent<CategoryType> = ({ children }) => {
-
     const { data, error, isLoading } = useQuery<categoriesType[], Error>({
-        queryKey: ['all-coffee'],
+        queryKey: ['all-categories'],
         queryFn: getAllCategories
     })
     if (error) {
