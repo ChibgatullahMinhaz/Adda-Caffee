@@ -52,3 +52,8 @@ export interface CoffeeFormData {
   available: boolean;
   isSpecial: boolean;
 }
+
+
+export interface categoriesType {
+  categories: string
+}
