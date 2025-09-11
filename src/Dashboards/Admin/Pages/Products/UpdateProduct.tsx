@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router';
 import type { Coffee } from '../../../../types/types';
 import { getCoffeeDetailsAdminSide } from '../../../../api/getCoffeeDetails';
@@ -7,7 +7,8 @@ import { updateCoffee } from '../../../../api/updateCoffee';
 import Loader from '../../../../Components/UI/Loader';
 import { toast } from 'react-toastify';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { ALLOWED_SIZES, categories } from '../../../../javascript/categoryObject';
+import { ALLOWED_SIZES } from '../../../../javascript/categoryObject';
+import { CategoryContext } from '../../../../Contexts/Context/CategoryContext';
 
 // ✅ New type for form data
 type CoffeeFormData = Omit<Coffee, 'tags' | 'ingredients'> & {
@@ -19,6 +20,7 @@ type CoffeeFormData = Omit<Coffee, 'tags' | 'ingredients'> & {
 
 const UpdateProduct: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
+  const categoryArray = useContext(CategoryContext);
 
   const { data, error, refetch, isLoading } = useQuery<Coffee, Error>({
     queryKey: ['coffee-details', productId],
@@ -87,6 +89,15 @@ const UpdateProduct: React.FC = () => {
     mutation.mutate(formData);
   };
 
+  // @ render all categories 
+  const categoryOptions = useMemo(() => {
+    if (!categoryArray) {
+      return null
+    }
+    return categoryArray.map(cat => <option key={cat.categories} value={cat.categories}>{cat.categories}</option>)
+  }, [categoryArray])
+
+
   if (error) {
     toast.error(error.message);
     return <div>Error fetching coffee details.</div>;
@@ -124,7 +135,7 @@ const UpdateProduct: React.FC = () => {
         <div>
           <label className="label">Category</label>
           <select {...register('category')} className="select select-bordered w-full">
-            {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+            {categoryOptions ?? <option value="">No categories</option>}
           </select>
         </div>
 

@@ -5,6 +5,7 @@ export interface Coffee {
   category: string;
   price: number;
   images: FileList | null;
+  ratings: number;
   available: boolean;
   sizes: string[];
   currency: string;
@@ -53,8 +54,6 @@ export interface CoffeeFormData {
   isSpecial: boolean;
 }
 
-
 export interface categoriesType {
-  categories: string
+  categories: string;
 }
-

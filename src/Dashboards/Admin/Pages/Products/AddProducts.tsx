@@ -3,17 +3,13 @@ import type { CoffeeFormData } from "../../../../types/types";
 import { addCoffee } from "../../../../api/addCoffee";
 import { toast } from "react-toastify";
 import { ALLOWED_SIZES } from "../../../../javascript/categoryObject";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { CategoryContext } from "../../../../Contexts/Context/CategoryContext";
-
-
 
 
 const AddProducts: React.FunctionComponent = () => {
     //@ get all category from context
     const categoryArray = useContext(CategoryContext);
-    const categories = categoryArray?.map(c => c.categories);
-
     const {
         register,
         handleSubmit,
@@ -149,9 +145,13 @@ const AddProducts: React.FunctionComponent = () => {
         // @ Form submit er por form reset kore dichi. 
         //   Sob input blank hoye jabe ar user nobo product add korte parbe.
     };
-
-
-
+    const categoryOptions = useMemo(() => {
+        if (!categoryArray) {
+            return null
+        }
+        return categoryArray.map(cat => <option key={cat.categories} value={cat.categories}>{cat.categories}</option>)
+    }, [categoryArray])
+    
     return (
         <div>
             <h2 className="text-2xl font-bold mb-4 text-center md:text-4xl">
@@ -179,11 +179,7 @@ const AddProducts: React.FunctionComponent = () => {
                             {/* category */}
                             <label className="label">Category</label>
                             <select {...register("category")} className="select select-bordered w-full">
-                                {categories.map(cat => (
-                                    <option key={cat} value={cat}>
-                                        {cat}
-                                    </option>
-                                ))}
+                                {categoryOptions ?? <option value="">No categories</option>}
                             </select>
 
                             {/* description */}
