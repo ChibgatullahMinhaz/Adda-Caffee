@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const SubHeader: React.FunctionComponent = () => {
     return (
         <div className="bg-[#ECEAE3] overflow-hidden">
-            <div className="max-w-9/12 mx-auto grid grid-cols-1 md:text-left text-center content-center justify-center items-center md:grid-cols-3 lg:grid-cols-4 ">
+            <div className="max-w-[95%] mx-auto grid grid-cols-1 md:text-left text-center content-center justify-center items-center md:grid-cols-3 lg:grid-cols-4 ">
                 <motion.div
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}

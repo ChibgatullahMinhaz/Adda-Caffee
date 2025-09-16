@@ -42,7 +42,7 @@ const UserOrderHistory: React.FunctionComponent = () => {
         {orders.map((order) => (
           <div
             key={order.id}
-            className="p-6 border rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow duration-300"
+            className="p-6 border border-base-200 rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             {/* Header */}
             <div className="flex justify-between items-center border-b pb-2 mb-3">

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rancho&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: light --default;
@@ -6,19 +6,24 @@
 
 :root {
   --btnColor: #e3b577;
-  --fontFamily: "Rancho", cursive;
+  --fontFamily: "Poppins", sans-serif;
   --primaryColor: #392928;
+  --playFairFamily: "Playfair Display", serif;
 }
 
 * {
   font-family: var(--fontFamily);
   font-size: 1rem;
 }
+h1, h2, h3, h4, h5, h6{
+  font-family: var(--playFairFamily);
+}
 body {
   background-image: url("./assets/more/10.png");
   background-repeat: no-repeat;
   overflow-x: hidden;
 }
+
 #detailsPage {
   background-image: url("/src/assets/more/11.png"),
     url("/src/assets/more/5.png");
@@ -70,7 +75,9 @@ html {
 #hero {
   background-image: url("/src/assets/more/3.png");
   background-repeat: no-repeat;
+  min-height: calc(100vh - 88px);
 }
+
 #addCoffee {
   background-image: url("/src/assets/more/11.png"),
     url("/src/assets/more/5.png");
@@ -94,6 +101,12 @@ footer {
   background-repeat: no-repeat;
   color: beige;
 }
-h1{
+h1 {
   font-size: 2.5rem;
+}
+#dasboardUserIcon p{
+font-size: 1rem;
+}
+#dasboardUserIcon h2{
+font-size: 1.5rem;
 }

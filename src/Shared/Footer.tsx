@@ -18,27 +18,29 @@ const Footer: React.FC = () => {
             viewport={{ once: false, amount: 0.1 }}
             className="overflow-hidden"
         >
-            <motion.div className="p-4 md:p-8 lg:p-10 grid grid-cols-1 md:grid-cols-2 items-center lg:gap-x-9 relative overflow-hidden">
-                <div>
-                    <img src={Logo} alt="footer logo" className="w-10 h-10" />
+            <motion.div className=" bg-[#382827] text-[#F5F5DC] p-4 md:p-8 lg:p-10 grid grid-cols-1 md:grid-cols-2 items-center lg:gap-x-9 relative overflow-hidden">
+                <div >
+                   <div className="flex gap-x-3 items-center">
+                     <img src={Logo} alt="footer logo" className="w-10 h-10" />
                     <Link to={`/`}>
                         <motion.p
                             initial={{ x: -100, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.6, ease: "easeIn" }}
                             viewport={{ once: false, amount: 0.1 }}
-                            className="text-[#331A15] textShadow"
+                            className="text-[#F5F5DC] textShadow"
                         >
                              Adda Caffee
                         </motion.p>
                     </Link>
+                   </div>
 
                     <motion.p
                         initial={{ x: -100, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.6, ease: "easeIn" }}
                         viewport={{ once: false, amount: 0 }}
-                        className="text-[#331A15]"
+                        className="text-[#F5F5DC]"
                     >
                         Always ready to be your friend. Come & Contact with us to share your
                         memorable moments, to share with your best companion.
@@ -64,7 +66,7 @@ const Footer: React.FC = () => {
                             whileInView={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.6, ease: "easeIn" }}
                             viewport={{ once: false, amount: 0 }}
-                            className="text-[#331A15] textShadow"
+                            className="text-[#F5F5DC] textShadow"
                         >
                             Get in Touch
                         </motion.p>
@@ -74,7 +76,7 @@ const Footer: React.FC = () => {
                             whileInView={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.6, ease: "easeIn" }}
                             viewport={{ once: false, amount: 0 }}
-                            className="text-[#331A15] flex items-center"
+                            className="text-[#F5F5DC] flex items-center"
                         >
                             <FaPhone />
                             +88 01533 333 333
@@ -85,7 +87,7 @@ const Footer: React.FC = () => {
                             whileInView={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.6, ease: "easeIn" }}
                             viewport={{ once: false, amount: 0 }}
-                            className="text-[#331A15] flex items-center"
+                            className="text-[#F5F5DC] flex items-center"
                         >
                             <MdEmail />
                              AddaCaffee.info@gmail.com
@@ -96,7 +98,7 @@ const Footer: React.FC = () => {
                             whileInView={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.6, ease: "easeIn" }}
                             viewport={{ once: false, amount: 0 }}
-                            className="text-[#331A15] flex items-center"
+                            className="text-[#F5F5DC] flex items-center"
                         >
                             <FaLocationDot />
                             72, Wall street, King Road, Dhaka
@@ -109,7 +111,7 @@ const Footer: React.FC = () => {
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.6, ease: "easeIn" }}
                         viewport={{ once: false, amount: 0 }}
-                        className="text-[#331A15] textShadow"
+                        className="text-[#F5F5DC] textShadow"
                     >
                         Contact With Us
                     </motion.p>
@@ -121,7 +123,7 @@ const Footer: React.FC = () => {
                             transition={{ duration: 0.6, ease: "easeIn" }}
                             viewport={{ once: false, amount: 0 }}
                             type="text"
-                            className="input outline-none focus:shadow-amber-300 focus:shadow-sm focus:border-2 focus:border-amber-500 focus:outline-none"
+                            className="input outline-none focus:shadow-amber-300 focus:shadow-sm focus:border-2 focus:border-amber-500 focus:outline-none bg-[#F5F5DC] text-[#382827]"
                             name="name"
                             placeholder="Name"
                         />
@@ -131,7 +133,7 @@ const Footer: React.FC = () => {
                             transition={{ duration: 0.6, ease: "easeIn" }}
                             viewport={{ once: false, amount: 0 }}
                             type="email"
-                            className="input outline-none focus:shadow-amber-300 focus:shadow-sm focus:border-2 focus:border-amber-500 focus:outline-none"
+                            className="input outline-none focus:shadow-amber-300 focus:shadow-sm focus:border-2 focus:border-amber-500 focus:outline-none bg-[#F5F5DC] text-[#382827]"
                             name="email"
                             placeholder="Email"
                         />
@@ -145,7 +147,7 @@ const Footer: React.FC = () => {
                             cols={10}
                             rows={5}
                             placeholder="Message"
-                            className="textarea border-2 outline-none focus:shadow-amber-300 focus:shadow-sm focus:border-2 focus:border-amber-500 focus:outline-none"
+                            className="textarea border-2 outline-none focus:shadow-amber-300 focus:shadow-sm focus:border-2 focus:border-amber-500 focus:outline-none bg-[#F5F5DC] text-[#382827]"
                         ></motion.textarea>
                     </div>
                     <button type="submit" className="btn btn-outline hover:bg-[var(--btnColor)]">

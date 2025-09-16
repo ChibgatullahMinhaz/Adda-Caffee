@@ -73,7 +73,7 @@ const CustomerInvoice: React.FC = () => {
                 {orderHistory.map((order) => (
                     <div
                         key={order.id}
-                        className="flex justify-between items-center p-6 border rounded-lg bg-white shadow-md"
+                        className="flex justify-between items-center p-6 border border-gray-300 rounded-lg bg-white shadow-md"
                     >
                         <div>
                             <h2 className="font-bold text-lg">Order #{order.id}</h2>
@@ -83,7 +83,7 @@ const CustomerInvoice: React.FC = () => {
                         </div>
                         <button
                             onClick={() => generatePDF(order)}
-                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                            className="px-4 py-2 bg-[#382827] text-white rounded hover:bg-[#503e3c] cursor-pointer transition"
                         >
                             Export PDF
                         </button>

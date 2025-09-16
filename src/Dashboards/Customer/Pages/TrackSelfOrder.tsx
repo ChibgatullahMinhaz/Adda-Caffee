@@ -85,7 +85,7 @@ const TrackSelfOrder: React.FunctionComponent = () => {
                 <td className="p-3 text-right">
                   <button
                     onClick={() => setSelectedOrder(order)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                    className="px-4 py-2 bg-[#382827] text-white rounded hover:bg-[#453130]"
                   >
                     Track
                   </button>
@@ -154,7 +154,7 @@ const TrackSelfOrder: React.FunctionComponent = () => {
           {/* Support */}
           <button
             onClick={() => setSelectedOrder(null)}
-            className="w-full bg-red-600 text-white py-3 rounded-lg font-medium hover:bg-red-700 transition"
+            className="w-full bg-[#382827] text-white py-3 rounded-lg font-medium hover:bg-[#4e3937] transition"
           >
             Close Tracking
           </button>

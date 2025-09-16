@@ -51,7 +51,7 @@ const Home: React.FC = () => {
                 </Suspense>
             </section>
             <Suspense fallback={<Loading />}><FollowUsSection></FollowUsSection></Suspense>
-            <section className="max-w-[95%] mx-auto">
+            <section className="max-w-7xl mx-auto">
                 <Suspense fallback={<Loading />}>
                     <AboutUs />
                 </Suspense>

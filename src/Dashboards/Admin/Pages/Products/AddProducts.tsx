@@ -336,7 +336,7 @@ const AddProducts: React.FunctionComponent = () => {
 
                 {/* Submit */}
                 <div>
-                    <button type="submit" className="btn btn-primary w-full">
+                    <button type="submit" className="btn bg-[#382827] text-base-200 w-full">
                         Add Product
                     </button>
                 </div>

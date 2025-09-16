@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Loader from "../Components/UI/Loader";
-
+import DashboardUserComponent from "../Components/userIcon/DashboardUserComponent";
 const AdminLayout: React.FunctionComponent = () => {
   const [routeLoading, setRouteLoading] = useState<boolean>(true);
   const location = useLocation();
@@ -42,11 +42,13 @@ const AdminLayout: React.FunctionComponent = () => {
     }, 100);
     return () => clearTimeout(timeout);
   }, [location]);
+
+ 
   return (
     <div className="drawer lg:drawer-open min-h-screen">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
-        <div className="w-full navbar border-b-2 border-base-100 ">
+        <div className="w-full navbar   border-b-2 border-base-200 ">
           <div className="flex-none lg:hidden">
             <label htmlFor="dashboard-drawer" className="btn btn-square btn-ghost">
               <Menu className="w-6 h-6" />
@@ -64,7 +66,7 @@ const AdminLayout: React.FunctionComponent = () => {
           )}
         </main>
 
-        <footer className="text-center py-4">
+        <footer className="text-center py-4 sticky bottom-0 z-30 ">
           <p>© 2025 Adda Caffe. All rights reserved.</p>
         </footer>
       </div>
@@ -72,14 +74,11 @@ const AdminLayout: React.FunctionComponent = () => {
       <div className="drawer-side">
         <label htmlFor="dashboard-drawer" className="drawer-overlay lg:hidden"></label>
         <aside className="menu p-4 max-w-72 bg-base-200 text-base-content min-h-screen space-y-2">
-          <h2 className="text-xl font-bold mb-4">
-            <Link to={`/admin-dashboard`} >
-              Admin Menu</Link>
-          </h2>
+          <DashboardUserComponent />
 
           {/* Dashboard */}
           <li>
-            <Link to="/admin-dashboard" className="flex items-center gap-2 bg-amber-100">
+            <Link to="/admin-dashboard" className="flex items-center gap-2 bg-[#382827] text-[#E3B577]">
               <LayoutDashboard size={18} /> Dashboard
             </Link>
           </li>
@@ -265,6 +264,7 @@ const AdminLayout: React.FunctionComponent = () => {
               </ul>
             </div>
           </div>
+
         </aside>
       </div>
     </div>

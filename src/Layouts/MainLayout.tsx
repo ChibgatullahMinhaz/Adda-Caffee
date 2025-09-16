@@ -18,7 +18,7 @@ const MainLayout: React.FC = () => {
     }, [location, handleScroll]);
     
     return (
-        <>
+        <div className='max-w-7xl mx-auto'>
             <ScrollButton></ScrollButton>
             <header>
                 <nav>
@@ -48,7 +48,7 @@ const MainLayout: React.FC = () => {
                 <Footer />
             </Suspense>
 
-        </>
+        </div>
     );
 };
 

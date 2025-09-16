@@ -6,10 +6,12 @@ import {
     History,
     UserCircle,
     Menu,
+    ArrowBigLeft,
 } from "lucide-react";
 import ScrollButton from "../Components/UI/ScrollButton";
 import { useEffect, useState } from "react";
 import Loader from "../Components/UI/Loader";
+import DashboardUserComponent from "../Components/userIcon/DashboardUserComponent";
 const UserDashboard = () => {
     const [routeLoading, setRouteLoading] = useState<boolean>(true);
     const location = useLocation();
@@ -68,13 +70,13 @@ const UserDashboard = () => {
                         htmlFor="dashboard-drawer"
                         className="drawer-overlay lg:hidden"
                     ></label>
-                    <aside className="menu p-4 max-w-64 bg-base-200 text-base-content min-h-screen">
-                        <Link to={`/`} className="text-xl font-bold mb-4">My Menu</Link>
-                        <ul className="menu p-0 space-y-1">
+                    <aside className="menu p-4 max-w-64 bg-base-200 text-base-content min-h-screen space-y-3">
+                        <DashboardUserComponent />
+                        <ul className="menu p-0 space-y-2 h-screen">
                             <li>
                                 <NavLink to="/customer-dashboard" className={({ isActive }) =>
                                     isActive
-                                        ? "flex items-center gap-2 bg-amber-100"
+                                        ? "flex items-center gap-2 bg-[#382827] text-base-200"
                                         : "flex items-center gap-2"
                                 }
 
@@ -87,8 +89,8 @@ const UserDashboard = () => {
                                     to="/customer-dashboard/invoice-download"
                                     className={({ isActive }) =>
                                         isActive
-                                            ? "flex items-center gap-2 bg-amber-100"
-                                            : "flex items-center gap-2"
+                                            ? "flex items-center gap-2 bg-[#382827] border border-[#382827] text-base-200"
+                                            : "flex items-center gap-2 bg-base-300 border border-gray-300"
                                     }
                                 >
                                     <FileDown size={18} /> Download invoice
@@ -97,8 +99,8 @@ const UserDashboard = () => {
                             <li>
                                 <NavLink to="/customer-dashboard/track/my/order" className={({ isActive }) =>
                                     isActive
-                                        ? "flex items-center gap-2 bg-amber-100"
-                                        : "flex items-center gap-2"
+                                        ? "flex items-center gap-2 bg-[#382827] border border-[#382827] text-base-200"
+                                        : "flex items-center gap-2 bg-base-300 border border-gray-300"
                                 }>
                                     <PackageSearch size={18} />
                                     Track My Orders
@@ -107,8 +109,8 @@ const UserDashboard = () => {
                             <li>
                                 <NavLink to="/customer-dashboard/my/order/history" className={({ isActive }) =>
                                     isActive
-                                        ? "flex items-center gap-2 bg-amber-100"
-                                        : "flex items-center gap-2"
+                                        ? "flex items-center gap-2 bg-[#382827] border border-[#382827] text-base-200"
+                                        : "flex items-center gap-2 bg-base-300 border border-gray-300"
                                 }>
                                     <History size={18} />
                                     Order History
@@ -121,6 +123,10 @@ const UserDashboard = () => {
                                 </Link>
                             </li>
                         </ul>
+                        <Link to={`/`} className="sticky bottom-4 z-10 bg-green-950 p-2 rounded-xl text-base-200 font-semibold flex  items-center">
+                            <ArrowBigLeft ></ArrowBigLeft>
+                            <span>Back to Home</span>
+                        </Link>
                     </aside>
                 </div>
             </div >

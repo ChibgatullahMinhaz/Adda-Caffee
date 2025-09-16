@@ -40,21 +40,21 @@ const Navbar: React.FC = () => {
     return (
         <>
             <div className="flex ">
+                <Marquee className="flex justify-center items-center">
+                    <span>Location: Chittagong, Bangladesh.&nbsp;&nbsp;&nbsp;</span>
+                    <span>Contact Number: whatsapp(+8801989934993)</span>
+                </Marquee>
                 <Marquee className="flex justify-center items-center max-w-[90%] mx-auto">
-                <span>Location: Chittagong, Bangladesh.&nbsp;&nbsp;&nbsp;</span>
-                <span>Contact Number: whatsapp(+8801989934993)</span>
-            </Marquee>
-            <Marquee className="flex justify-center items-center max-w-[90%] mx-auto">
-                <span>Location: Chittagong, Bangladesh.&nbsp;&nbsp;&nbsp;</span>
-                <span>Contact Number: whatsapp(+8801989934993)</span>
-            </Marquee>
+                    <span>Location: Chittagong, Bangladesh.&nbsp;&nbsp;&nbsp;</span>
+                    <span>Contact Number: whatsapp(+8801989934993)</span>
+                </Marquee>
             </div>
 
             <motion.div
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="navbar shadow-sm"
+                className="navbar shadow-sm "
                 id="navbar"
             >
 
@@ -125,8 +125,6 @@ const Navbar: React.FC = () => {
                             SingUp
                         </button>
                     </Link>}
-
-
                 </div>
             </motion.div>
         </>

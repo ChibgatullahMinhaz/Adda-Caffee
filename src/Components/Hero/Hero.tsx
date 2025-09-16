@@ -7,13 +7,13 @@ const Hero: React.FC = () => {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, amount: 0 }}
-            className="hero max-h-screen md:h-[400px] overflow-hidden"
+            className="hero  md:h-[400px] overflow-hidden"
             id="hero"
+            
         >
-            <div className="hero-overlay"></div>
-            <div className="hero-content md:grid  md:grid-cols-2 text-neutral-content text-center sm:text-justify">
-                <div className="hidden md:block"></div>
-                <div className="max-w-md ">
+            {/* <div className="hero-overlay"></div> */}
+            <div className="hero-content text-neutral-content sm:text-justify  max-w-lg mx-auto ">
+                <div className=" ">
                     <motion.h1
                         initial={{ y: -100, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}

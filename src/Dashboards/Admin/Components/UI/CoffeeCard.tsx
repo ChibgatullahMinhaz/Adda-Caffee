@@ -1,7 +1,7 @@
-import { Eye, Pencil, Trash2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Eye, Pencil, Trash2} from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import type { Coffee } from '../../../../types/types';
-import { useMatch, useNavigate } from 'react-router';
+import {  useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import axiosSecureInstance from '../../../../api/axiosSecureInstance';
@@ -22,7 +22,6 @@ const CoffeeCard: React.FC<CoffeeCardProps> = ({ coffee, refetch }) => {
         return coffee.images ?? []
     }, [coffee.images]) //@ pass images or empty array
 
-
     const prevImage = () => {
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     };
@@ -36,7 +35,6 @@ const CoffeeCard: React.FC<CoffeeCardProps> = ({ coffee, refetch }) => {
             setSelectedImage(`${baseUrl}/uploads/${images[currentIndex]}`);
         }
     }, [images, currentIndex]);
-
 
     // delete coffee
     const handleDelete = async (id: string) => {
@@ -70,8 +68,6 @@ const CoffeeCard: React.FC<CoffeeCardProps> = ({ coffee, refetch }) => {
        
         navigate(`/admin-dashboard/products/update/${id}`);
     };
-
-
 
     return (
         <section className="border p-4 rounded-lg shadow-md">
