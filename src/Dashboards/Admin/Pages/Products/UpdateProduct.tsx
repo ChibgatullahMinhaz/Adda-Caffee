@@ -75,6 +75,7 @@ const UpdateProduct: React.FC = () => {
     formValues.sizes.forEach(size => formData.append('sizes', size));
     formData.append('currency', formValues.currency);
     formData.append('inStock', String(formValues.inStock));
+    formData.append('isFeatured', String(formValues.isFeatured));
     formData.append('caffeineContent', String(formValues.caffeineContent));
     formData.append('calories', String(formValues.calories));
     formData.append('tags', tags.join(','));

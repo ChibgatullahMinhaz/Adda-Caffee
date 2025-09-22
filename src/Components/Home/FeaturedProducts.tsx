@@ -33,9 +33,9 @@ const FeaturedProducts: React.FunctionComponent = () => {
             <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {data?.map((coffee) => (
                     <Link
-                        to={`/coffee/${coffee._id}`} // ✅ Dynamic route
+                        to={`/coffee/details/${coffee._id}`} // ✅ Dynamic route
                         key={coffee._id}
-                        className="block group" // পুরো কার্ড clickable
+                        className="block group" 
                     >
                         <div className="bg-white shadow-md rounded-2xl overflow-hidden flex flex-col hover:shadow-lg transition group-hover:scale-[1.02]">
                             {/* Image Section */}
@@ -90,13 +90,13 @@ const FeaturedProducts: React.FunctionComponent = () => {
                                 {/* Buttons */}
                                 <div className="mt-auto flex gap-2">
                                     <button
-                                        className="flex-1 bg-[#4a3939] hover:bg-[#7a6060] text-white py-2 rounded-lg text-sm font-semibold transition"
+                                        className="flex-1 bg-[#4a3939] cursor-pointer hover:bg-[#7a6060] text-white py-2 rounded-lg text-sm font-semibold transition"
                                         onClick={(e) => e.preventDefault()}
                                     >
                                         Add to Cart
                                     </button>
                                     <button
-                                        className="flex-1 bg-[#EFC879] hover:bg-amber-700 text-white py-2 rounded-lg text-sm font-semibold transition"
+                                        className="flex-1 bg-[#EFC879] cursor-pointer hover:bg-amber-700 text-white py-2 rounded-lg text-sm font-semibold transition"
                                         onClick={(e) => e.preventDefault()}
                                     >
                                         Buy Now

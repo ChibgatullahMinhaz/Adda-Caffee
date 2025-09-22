@@ -26,7 +26,6 @@ import ProductManagements from "../Dashboards/Admin/Pages/Products/ProductManage
 import Categories from "../Dashboards/Admin/Pages/Products/Categories";
 import AddProducts from "../Dashboards/Admin/Pages/Products/AddProducts";
 import UpdateProduct from "../Dashboards/Admin/Pages/Products/UpdateProduct";
-import ProductDetails from "../Dashboards/Admin/Pages/Products/ProductDetails";
 import AllUsers from "../Dashboards/Admin/Pages/Users/AllUsers";
 import UserDetails from "../Dashboards/Admin/Pages/Users/UserDetails";
 import MakeAdmin from "../Dashboards/Admin/Pages/Users/MakeAdmin";
@@ -74,6 +73,7 @@ import MaintananceMode from "../Dashboards/Admin/Pages/Settings/MaintananceMode"
 import BackupRestore from "../Dashboards/Admin/Pages/Settings/BackupRestore";
 import PaymentsSeting from "../Dashboards/Admin/Pages/Settings/PaymentsSeting";
 import Loading from "../Components/ComponentLoading/Loading";
+import ProductDetails from "../Pages/productDetails/ProductDetails";
 
 const routes: RouteObject[] = [
     {
@@ -91,6 +91,10 @@ const routes: RouteObject[] = [
             {
                 path: '/our-story',
                 element: <OurStory></OurStory>
+            },
+            {
+                path: '/coffee/details/:productId',
+                element: <ProductDetails></ProductDetails>
             },
             {
                 path: 'login',
