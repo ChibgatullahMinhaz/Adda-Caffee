@@ -13,7 +13,7 @@ const FeaturedProducts: React.FunctionComponent = () => {
 
     if (isPending) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
-    console.log(data)
+
     return (
         <div className="my-10">
             {/* 🔹 Section Title */}
