@@ -35,11 +35,13 @@ const AddProducts: React.FunctionComponent = () => {
             roastLevel: "",
             origin: "",
             available: true,
-            isSpecial: false
+            isSpecial: false,
+            isFeatured: false
         }
     });
 
     const onSubmit: SubmitHandler<CoffeeFormData> = (data) => {
+       
         const files = data.images;
         // @ 'data.images' theke file input gulo collect korchi. 
         //   Eta user jeta upload korbe tar jonno.
@@ -110,6 +112,7 @@ const AddProducts: React.FunctionComponent = () => {
         // @ Ratings field DB save er jonno add korchi.
 
         formData.append("calories", String(data.calories));
+        formData.append("isFeatured", String(data.isFeatured));
         // @ Calories field add korchi.
 
         formData.append("tags", tags.join(","));
@@ -151,7 +154,7 @@ const AddProducts: React.FunctionComponent = () => {
         }
         return categoryArray.map(cat => <option key={cat.categories} value={cat.categories}>{cat.categories}</option>)
     }, [categoryArray])
-    
+
     return (
         <div>
             <h2 className="text-2xl font-bold mb-4 text-center md:text-4xl">
@@ -322,7 +325,10 @@ const AddProducts: React.FunctionComponent = () => {
                             className="input w-full"
                             placeholder="coffee, blackCoffee"
                         />
-
+                        <div className="flex items-center gap-2">
+                            <label className="label">Is Featured</label>
+                            <input type="checkbox" {...register("isFeatured")} className="checkbox" />
+                        </div>
                         <label className="label">Upload Product Images</label>
                         <input
                             type="file"

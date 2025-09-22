@@ -68,7 +68,6 @@ export default function ProductDetails() {
         </button>
       </div>
     );
-  console.log(data)
 
   return (
     <>

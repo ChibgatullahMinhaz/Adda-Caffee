@@ -21,6 +21,8 @@ export interface Coffee {
   roastLevel: string;
   origin: string;
   isSpecial: boolean;
+  isFeatured: boolean;
+  soldCount:boolean;
 }
 
 export interface User {
@@ -52,6 +54,8 @@ export interface CoffeeFormData {
   origin: string;
   available: boolean;
   isSpecial: boolean;
+  isFeatured: boolean;
+   soldCount:boolean;
 }
 
 export interface categoriesType {

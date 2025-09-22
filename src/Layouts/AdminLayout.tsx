@@ -27,6 +27,7 @@ import {
 import { useEffect, useState } from "react";
 import Loader from "../Components/UI/Loader";
 import DashboardUserComponent from "../Components/userIcon/DashboardUserComponent";
+import BacktoHome from "../Components/UI/BacktoHome";
 const AdminLayout: React.FunctionComponent = () => {
   const [routeLoading, setRouteLoading] = useState<boolean>(true);
   const location = useLocation();
@@ -43,7 +44,7 @@ const AdminLayout: React.FunctionComponent = () => {
     return () => clearTimeout(timeout);
   }, [location]);
 
- 
+
   return (
     <div className="drawer lg:drawer-open min-h-screen">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
@@ -66,7 +67,7 @@ const AdminLayout: React.FunctionComponent = () => {
           )}
         </main>
 
-        <footer className="text-center py-4 sticky bottom-0 z-30 ">
+        <footer className="text-center py-4 md:sticky bottom-0 md:z-10 ">
           <p>© 2025 Adda Caffe. All rights reserved.</p>
         </footer>
       </div>
@@ -78,7 +79,7 @@ const AdminLayout: React.FunctionComponent = () => {
 
           {/* Dashboard */}
           <li>
-            <Link to="/admin-dashboard" className="flex items-center gap-2 bg-[#382827] text-[#E3B577]">
+            <Link to="/admin-dashboard" className="flex items-center gap-2 bg-[#382827] text-base-200">
               <LayoutDashboard size={18} /> Dashboard
             </Link>
           </li>
@@ -264,7 +265,7 @@ const AdminLayout: React.FunctionComponent = () => {
               </ul>
             </div>
           </div>
-
+          <BacktoHome />
         </aside>
       </div>
     </div>

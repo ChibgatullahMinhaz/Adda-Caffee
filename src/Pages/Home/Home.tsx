@@ -31,20 +31,22 @@ const Home: React.FC = () => {
             }>
                 <SubHeader></SubHeader>
             </Suspense>
+            <Suspense fallback={<Loading />}>
+                <OurProductSection></OurProductSection>
+            </Suspense>
             <section className="max-w-[90%] mx-auto">
+                <Suspense fallback={<Loading />}>
+                    <FeaturedProducts />
+                </Suspense>
                 <Suspense fallback={<Loading />}>
                     <WhyChooseUs />
                 </Suspense>
                 <Suspense fallback={<Loading />}>
                     <OrderDeliveryInfo />
                 </Suspense>
-                <Suspense fallback={<Loading />}>
-                    <FeaturedProducts />
-                </Suspense>
+
             </section>
-            <Suspense fallback={<Loading />}>
-                <OurProductSection></OurProductSection>
-            </Suspense>
+
             <section className="max-w-[95%] mx-auto">
                 <Suspense fallback={<Loading />}>
                     <SpecialOffer />

@@ -233,6 +233,11 @@ const UpdateProduct: React.FC = () => {
             <input type="checkbox" {...register('isSpecial')} className="checkbox" /> Mark as Special
           </label>
         </div>
+        {/* is featured */}
+        <div className="flex items-center gap-2">
+          <label className="label">Is Featured</label>
+          <input type="checkbox" {...register("isFeatured")} className="checkbox" />
+        </div>
 
         {/* Seasonal */}
         <div>

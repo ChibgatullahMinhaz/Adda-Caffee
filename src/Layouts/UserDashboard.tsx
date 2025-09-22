@@ -6,12 +6,13 @@ import {
     History,
     UserCircle,
     Menu,
-    ArrowBigLeft,
+
 } from "lucide-react";
 import ScrollButton from "../Components/UI/ScrollButton";
 import { useEffect, useState } from "react";
 import Loader from "../Components/UI/Loader";
 import DashboardUserComponent from "../Components/userIcon/DashboardUserComponent";
+import BacktoHome from "../Components/UI/BacktoHome";
 const UserDashboard = () => {
     const [routeLoading, setRouteLoading] = useState<boolean>(true);
     const location = useLocation();
@@ -123,10 +124,7 @@ const UserDashboard = () => {
                                 </Link>
                             </li>
                         </ul>
-                        <Link to={`/`} className="sticky bottom-4 z-10 bg-green-950 p-2 rounded-xl text-base-200 font-semibold flex  items-center">
-                            <ArrowBigLeft ></ArrowBigLeft>
-                            <span>Back to Home</span>
-                        </Link>
+                        <BacktoHome />
                     </aside>
                 </div>
             </div >
